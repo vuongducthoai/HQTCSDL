@@ -59,6 +59,18 @@
     <Compile Include="Forms\ManagerInforUser\FInfor.Designer.cs">
       <DependentUpon>FInfor.cs</DependentUpon>
     </Compile>
+    <Compile Include="Forms\ManagerProduct\FProduct.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\ManagerProduct\FProduct.Designer.cs">
+      <DependentUpon>FProduct.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\ManagerProduct\Page\AddProduct.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\ManagerProduct\Page\AddProduct.Designer.cs">
+      <DependentUpon>AddProduct.cs</DependentUpon>
+    </Compile>
     <Compile Include="model\Product.cs" />
     <Compile Include="model\Service.cs" />
     <Compile Include="model\Users.cs" />
@@ -70,6 +82,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\ManagerInforUser\FInfor.resx">
       <DependentUpon>FInfor.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\ManagerProduct\FProduct.resx">
+      <DependentUpon>FProduct.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\ManagerProduct\Page\AddProduct.resx">
+      <DependentUpon>AddProduct.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
@@ -99,6 +117,7 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="image\istockphoto-1337144146-612x612.jpg" />
+    <Content Include="image\Untitled-1-3.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
