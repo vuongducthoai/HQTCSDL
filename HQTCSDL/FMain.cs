@@ -1,4 +1,5 @@
-﻿using System;
+﻿using HQTCSDL.Forms.ManagerInforUser;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -12,9 +13,32 @@ namespace HQTCSDL
 {
     public partial class FMain : Form
     {
+        My_DB mydb = new My_DB();
         public FMain()
         {
             InitializeComponent();
+        }
+
+        private void FMain_Load(object sender, EventArgs e)
+        {
+            mydb.openConnection();
+            mydb.closeConnection();
+            Config.setID(1);
+            Config.setRole(0);
+        }
+
+        private void btn_infor_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                FInfor form = new FInfor();
+                controlPanel.Controls.Clear();
+                form.TopLevel = false;
+                controlPanel.Controls.Add(form);
+                form.BringToFront();
+                form.Show();
+            }
+            catch { }
         }
     }
 }
