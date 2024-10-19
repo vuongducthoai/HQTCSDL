@@ -1,4 +1,5 @@
 ﻿using HQTCSDL.Forms.ManagerInforUser;
+using HQTCSDL.Forms.ManagerProduct;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -32,6 +33,20 @@ namespace HQTCSDL
             try
             {
                 FInfor form = new FInfor();
+                controlPanel.Controls.Clear();
+                form.TopLevel = false;
+                controlPanel.Controls.Add(form);
+                form.BringToFront();
+                form.Show();
+            }
+            catch { }
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                FProduct form = new FProduct();
                 controlPanel.Controls.Clear();
                 form.TopLevel = false;
                 controlPanel.Controls.Add(form);
