@@ -1,5 +1,6 @@
 ﻿using HQTCSDL.Forms.ManagerInforUser;
 using HQTCSDL.Forms.ManagerProduct;
+using HQTCSDL.Forms.ManagerVoucher;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -38,6 +39,7 @@ namespace HQTCSDL
                 controlPanel.Controls.Add(form);
                 form.BringToFront();
                 form.Show();
+                label1.Text = "Thông tin cá nhân";
             }
             catch { }
         }
@@ -52,6 +54,22 @@ namespace HQTCSDL
                 controlPanel.Controls.Add(form);
                 form.BringToFront();
                 form.Show();
+                label1.Text = "Quản lí Sản phẩm";
+            }
+            catch { }
+        }
+
+        private void button7_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                FVoucher form = new FVoucher();
+                controlPanel.Controls.Clear();
+                form.TopLevel = false;
+                controlPanel.Controls.Add(form);
+                form.BringToFront();
+                form.Show();
+                label1.Text = "Quản lí Ưu đãi";
             }
             catch { }
         }
