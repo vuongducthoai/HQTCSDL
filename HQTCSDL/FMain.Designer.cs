@@ -67,7 +67,7 @@ namespace HQTCSDL
             // 
             this.headerPanel.BackColor = System.Drawing.Color.GhostWhite;
             this.headerPanel.Controls.Add(this.label1);
-            this.headerPanel.Location = new System.Drawing.Point(48, 2);
+            this.headerPanel.Location = new System.Drawing.Point(28, 2);
             this.headerPanel.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.headerPanel.Name = "headerPanel";
             this.headerPanel.Size = new System.Drawing.Size(906, 52);
@@ -88,7 +88,7 @@ namespace HQTCSDL
             // controlPanel
             // 
             this.controlPanel.BackColor = System.Drawing.Color.LightCyan;
-            this.controlPanel.Location = new System.Drawing.Point(48, 64);
+            this.controlPanel.Location = new System.Drawing.Point(28, 64);
             this.controlPanel.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.controlPanel.Name = "controlPanel";
             this.controlPanel.Size = new System.Drawing.Size(906, 530);

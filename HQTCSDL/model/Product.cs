@@ -6,6 +6,7 @@ using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Forms;
 
 namespace HQTCSDL.model
 {
@@ -73,6 +74,33 @@ namespace HQTCSDL.model
             }
             return null;
         }
+
+        public DataTable SearchProduct(string name,decimal? price_start,decimal? price_end,int? id_category)
+        { 
+            DataTable dataTable = new DataTable();
+            SqlCommand cmd = new SqlCommand("EXEC SEARCH_PRODUCT" +
+                " @name,@price_start,@price_end,@id_ca", db.getConnection);
+            cmd.Parameters.AddWithValue("@name", name);
+            cmd.Parameters.AddWithValue("@price_start",  (Object)price_start??DBNull.Value);
+            cmd.Parameters.AddWithValue("@price_end", (Object)price_end ?? DBNull.Value);
+            cmd.Parameters.AddWithValue("@id_ca", (Object)id_category ?? DBNull.Value);
+            SqlDataAdapter adapter = new SqlDataAdapter(cmd);
+            try
+            {   
+                db.openConnection();
+                adapter.Fill(dataTable);
+                db.closeConnection();
+                return dataTable;
+
+            }
+            catch (Exception ex)
+            {
+                db.closeConnection();
+                MessageBox.Show(ex.Message);
+            }
+            return null;
+        }
+
         public bool updateProduct(int id,string name,MemoryStream pic,string des,decimal price)
         {
             SqlCommand cmd = new SqlCommand("EXEC UPDATE_PRODUCT @ID,@NAME,@IMAGE,@PRICE,@DES,@ID_VOUCHER", db.getConnection);
