@@ -30,7 +30,7 @@
         {
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
             this.label1 = new System.Windows.Forms.Label();
-            this.textBox1 = new System.Windows.Forms.TextBox();
+            this.textSearch = new System.Windows.Forms.TextBox();
             this.button1 = new System.Windows.Forms.Button();
             this.panel1 = new System.Windows.Forms.Panel();
             this.button7 = new System.Windows.Forms.Button();
@@ -42,24 +42,25 @@
             this.button4 = new System.Windows.Forms.Button();
             this.button3 = new System.Windows.Forms.Button();
             this.label7 = new System.Windows.Forms.Label();
-            this.numericUpDown1 = new System.Windows.Forms.NumericUpDown();
+            this.Price = new System.Windows.Forms.NumericUpDown();
             this.label6 = new System.Windows.Forms.Label();
-            this.richTextBox1 = new System.Windows.Forms.RichTextBox();
+            this.textDes = new System.Windows.Forms.RichTextBox();
             this.label5 = new System.Windows.Forms.Label();
-            this.textBox2 = new System.Windows.Forms.TextBox();
+            this.textName = new System.Windows.Forms.TextBox();
             this.label4 = new System.Windows.Forms.Label();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.label3 = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.panel1.SuspendLayout();
             this.panel2.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.Price)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.SuspendLayout();
             // 
             // dataGridView1
             // 
             this.dataGridView1.AllowUserToAddRows = false;
+            this.dataGridView1.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
             this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dataGridView1.Location = new System.Drawing.Point(29, 154);
             this.dataGridView1.Name = "dataGridView1";
@@ -68,6 +69,7 @@
             this.dataGridView1.RowTemplate.Height = 24;
             this.dataGridView1.Size = new System.Drawing.Size(438, 291);
             this.dataGridView1.TabIndex = 0;
+            this.dataGridView1.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView1_CellDoubleClick);
             // 
             // label1
             // 
@@ -79,12 +81,12 @@
             this.label1.TabIndex = 1;
             this.label1.Text = "Nhập tên hàng hóa/ \r\nnhà cung cấp";
             // 
-            // textBox1
+            // textSearch
             // 
-            this.textBox1.Location = new System.Drawing.Point(194, 124);
-            this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(173, 22);
-            this.textBox1.TabIndex = 2;
+            this.textSearch.Location = new System.Drawing.Point(194, 124);
+            this.textSearch.Name = "textSearch";
+            this.textSearch.Size = new System.Drawing.Size(173, 22);
+            this.textSearch.TabIndex = 2;
             // 
             // button1
             // 
@@ -104,7 +106,7 @@
             this.panel1.Controls.Add(this.dataGridView1);
             this.panel1.Controls.Add(this.button1);
             this.panel1.Controls.Add(this.label1);
-            this.panel1.Controls.Add(this.textBox1);
+            this.panel1.Controls.Add(this.textSearch);
             this.panel1.Location = new System.Drawing.Point(25, 27);
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(500, 491);
@@ -147,11 +149,11 @@
             this.panel2.Controls.Add(this.button4);
             this.panel2.Controls.Add(this.button3);
             this.panel2.Controls.Add(this.label7);
-            this.panel2.Controls.Add(this.numericUpDown1);
+            this.panel2.Controls.Add(this.Price);
             this.panel2.Controls.Add(this.label6);
-            this.panel2.Controls.Add(this.richTextBox1);
+            this.panel2.Controls.Add(this.textDes);
             this.panel2.Controls.Add(this.label5);
-            this.panel2.Controls.Add(this.textBox2);
+            this.panel2.Controls.Add(this.textName);
             this.panel2.Controls.Add(this.label4);
             this.panel2.Controls.Add(this.pictureBox1);
             this.panel2.Controls.Add(this.label3);
@@ -206,13 +208,23 @@
             this.label7.TabIndex = 14;
             this.label7.Text = "Ưu đãi:";
             // 
-            // numericUpDown1
+            // Price
             // 
-            this.numericUpDown1.Enabled = false;
-            this.numericUpDown1.Location = new System.Drawing.Point(145, 333);
-            this.numericUpDown1.Name = "numericUpDown1";
-            this.numericUpDown1.Size = new System.Drawing.Size(120, 22);
-            this.numericUpDown1.TabIndex = 13;
+            this.Price.Enabled = false;
+            this.Price.Increment = new decimal(new int[] {
+            2,
+            0,
+            0,
+            0});
+            this.Price.Location = new System.Drawing.Point(145, 333);
+            this.Price.Maximum = new decimal(new int[] {
+            100000000,
+            0,
+            0,
+            0});
+            this.Price.Name = "Price";
+            this.Price.Size = new System.Drawing.Size(120, 22);
+            this.Price.TabIndex = 13;
             // 
             // label6
             // 
@@ -224,14 +236,14 @@
             this.label6.TabIndex = 12;
             this.label6.Text = "Giá:";
             // 
-            // richTextBox1
+            // textDes
             // 
-            this.richTextBox1.Enabled = false;
-            this.richTextBox1.Location = new System.Drawing.Point(145, 208);
-            this.richTextBox1.Name = "richTextBox1";
-            this.richTextBox1.Size = new System.Drawing.Size(181, 105);
-            this.richTextBox1.TabIndex = 11;
-            this.richTextBox1.Text = "";
+            this.textDes.Enabled = false;
+            this.textDes.Location = new System.Drawing.Point(145, 208);
+            this.textDes.Name = "textDes";
+            this.textDes.Size = new System.Drawing.Size(181, 105);
+            this.textDes.TabIndex = 11;
+            this.textDes.Text = "";
             // 
             // label5
             // 
@@ -243,13 +255,13 @@
             this.label5.TabIndex = 10;
             this.label5.Text = "Mô tả:";
             // 
-            // textBox2
+            // textName
             // 
-            this.textBox2.Enabled = false;
-            this.textBox2.Location = new System.Drawing.Point(145, 151);
-            this.textBox2.Name = "textBox2";
-            this.textBox2.Size = new System.Drawing.Size(181, 22);
-            this.textBox2.TabIndex = 9;
+            this.textName.Enabled = false;
+            this.textName.Location = new System.Drawing.Point(145, 151);
+            this.textName.Name = "textName";
+            this.textName.Size = new System.Drawing.Size(181, 22);
+            this.textName.TabIndex = 9;
             // 
             // label4
             // 
@@ -293,12 +305,13 @@
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.Name = "FProduct";
             this.Text = "FProduct";
+            this.Load += new System.EventHandler(this.FProduct_Load);
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
             this.panel2.ResumeLayout(false);
             this.panel2.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.Price)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.ResumeLayout(false);
 
@@ -308,7 +321,7 @@
 
         private System.Windows.Forms.DataGridView dataGridView1;
         private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.TextBox textBox1;
+        private System.Windows.Forms.TextBox textSearch;
         private System.Windows.Forms.Button button1;
         private System.Windows.Forms.Panel panel1;
         private System.Windows.Forms.Label label2;
@@ -316,12 +329,12 @@
         private System.Windows.Forms.Button button2;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Label label6;
-        private System.Windows.Forms.RichTextBox richTextBox1;
+        private System.Windows.Forms.RichTextBox textDes;
         private System.Windows.Forms.Label label5;
-        private System.Windows.Forms.TextBox textBox2;
+        private System.Windows.Forms.TextBox textName;
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.PictureBox pictureBox1;
-        private System.Windows.Forms.NumericUpDown numericUpDown1;
+        private System.Windows.Forms.NumericUpDown Price;
         private System.Windows.Forms.Button button3;
         private System.Windows.Forms.Label label7;
         private System.Windows.Forms.Button button4;
