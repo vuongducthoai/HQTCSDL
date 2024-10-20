@@ -16,8 +16,9 @@ namespace HQTCSDL
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new FOrder());
-            
+            //Application.Run(new FOrder());
+            Application.Run(new FMain());
+
         }
     }
 }
