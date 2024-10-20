@@ -147,10 +147,23 @@
     <Compile Include="Forms\ManagerProduct\Page\Product_Infors.Designer.cs">
       <DependentUpon>Product_Infors.cs</DependentUpon>
     </Compile>
+    <Compile Include="Forms\ManagerVoucher\FVoucher.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\ManagerVoucher\FVoucher.Designer.cs">
+      <DependentUpon>FVoucher.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\ManagerVoucher\Page\AddVoucher.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\ManagerVoucher\Page\AddVoucher.Designer.cs">
+      <DependentUpon>AddVoucher.cs</DependentUpon>
+    </Compile>
     <Compile Include="model\Product.cs" />
     <Compile Include="model\Product_Infor.cs" />
     <Compile Include="model\Service.cs" />
     <Compile Include="model\Users.cs" />
+    <Compile Include="model\Voucher.cs" />
     <Compile Include="My_DB.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -183,6 +196,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\ManagerProduct\Page\Product_Infors.resx">
       <DependentUpon>Product_Infors.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\ManagerVoucher\FVoucher.resx">
+      <DependentUpon>FVoucher.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\ManagerVoucher\Page\AddVoucher.resx">
+      <DependentUpon>AddVoucher.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
