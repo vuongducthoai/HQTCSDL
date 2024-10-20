@@ -37,9 +37,12 @@
             this.button2 = new System.Windows.Forms.Button();
             this.label2 = new System.Windows.Forms.Label();
             this.panel2 = new System.Windows.Forms.Panel();
+            this.idVoucher = new System.Windows.Forms.TextBox();
+            this.textId = new System.Windows.Forms.TextBox();
+            this.label8 = new System.Windows.Forms.Label();
             this.button6 = new System.Windows.Forms.Button();
             this.button5 = new System.Windows.Forms.Button();
-            this.button4 = new System.Windows.Forms.Button();
+            this.btn_sua = new System.Windows.Forms.Button();
             this.button3 = new System.Windows.Forms.Button();
             this.label7 = new System.Windows.Forms.Label();
             this.Price = new System.Windows.Forms.NumericUpDown();
@@ -50,6 +53,7 @@
             this.label4 = new System.Windows.Forms.Label();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.label3 = new System.Windows.Forms.Label();
+            this.btnNhap = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.panel1.SuspendLayout();
             this.panel2.SuspendLayout();
@@ -83,9 +87,9 @@
             // 
             // textSearch
             // 
-            this.textSearch.Location = new System.Drawing.Point(194, 124);
+            this.textSearch.Location = new System.Drawing.Point(228, 124);
             this.textSearch.Name = "textSearch";
-            this.textSearch.Size = new System.Drawing.Size(173, 22);
+            this.textSearch.Size = new System.Drawing.Size(139, 22);
             this.textSearch.TabIndex = 2;
             // 
             // button1
@@ -135,7 +139,7 @@
             // 
             this.label2.AutoSize = true;
             this.label2.Font = new System.Drawing.Font("MingLiU_HKSCS-ExtB", 19.8F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))), System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label2.Location = new System.Drawing.Point(173, 40);
+            this.label2.Location = new System.Drawing.Point(168, 24);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(157, 33);
             this.label2.TabIndex = 4;
@@ -144,9 +148,13 @@
             // panel2
             // 
             this.panel2.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
+            this.panel2.Controls.Add(this.btnNhap);
+            this.panel2.Controls.Add(this.idVoucher);
+            this.panel2.Controls.Add(this.textId);
+            this.panel2.Controls.Add(this.label8);
             this.panel2.Controls.Add(this.button6);
             this.panel2.Controls.Add(this.button5);
-            this.panel2.Controls.Add(this.button4);
+            this.panel2.Controls.Add(this.btn_sua);
             this.panel2.Controls.Add(this.button3);
             this.panel2.Controls.Add(this.label7);
             this.panel2.Controls.Add(this.Price);
@@ -162,6 +170,33 @@
             this.panel2.Size = new System.Drawing.Size(363, 491);
             this.panel2.TabIndex = 5;
             // 
+            // idVoucher
+            // 
+            this.idVoucher.Enabled = false;
+            this.idVoucher.Location = new System.Drawing.Point(40, 14);
+            this.idVoucher.Name = "idVoucher";
+            this.idVoucher.Size = new System.Drawing.Size(68, 22);
+            this.idVoucher.TabIndex = 20;
+            this.idVoucher.Visible = false;
+            // 
+            // textId
+            // 
+            this.textId.Enabled = false;
+            this.textId.Location = new System.Drawing.Point(258, 100);
+            this.textId.Name = "textId";
+            this.textId.Size = new System.Drawing.Size(68, 22);
+            this.textId.TabIndex = 19;
+            // 
+            // label8
+            // 
+            this.label8.AutoSize = true;
+            this.label8.Font = new System.Drawing.Font("Microsoft YaHei", 9F, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label8.Location = new System.Drawing.Point(141, 102);
+            this.label8.Name = "label8";
+            this.label8.Size = new System.Drawing.Size(109, 20);
+            this.label8.TabIndex = 18;
+            this.label8.Text = "Mã sản phẩm:";
+            // 
             // button6
             // 
             this.button6.Location = new System.Drawing.Point(271, 439);
@@ -170,6 +205,7 @@
             this.button6.TabIndex = 17;
             this.button6.Text = "Xóa";
             this.button6.UseVisualStyleBackColor = true;
+            this.button6.Click += new System.EventHandler(this.button6_Click);
             // 
             // button5
             // 
@@ -179,15 +215,17 @@
             this.button5.TabIndex = 16;
             this.button5.Text = "Xem biến thể";
             this.button5.UseVisualStyleBackColor = true;
+            this.button5.Click += new System.EventHandler(this.button5_Click);
             // 
-            // button4
+            // btn_sua
             // 
-            this.button4.Location = new System.Drawing.Point(42, 439);
-            this.button4.Name = "button4";
-            this.button4.Size = new System.Drawing.Size(75, 24);
-            this.button4.TabIndex = 15;
-            this.button4.Text = "Sửa ";
-            this.button4.UseVisualStyleBackColor = true;
+            this.btn_sua.Location = new System.Drawing.Point(42, 439);
+            this.btn_sua.Name = "btn_sua";
+            this.btn_sua.Size = new System.Drawing.Size(75, 24);
+            this.btn_sua.TabIndex = 15;
+            this.btn_sua.Text = "Sửa ";
+            this.btn_sua.UseVisualStyleBackColor = true;
+            this.btn_sua.Click += new System.EventHandler(this.btn_sua_Click);
             // 
             // button3
             // 
@@ -210,12 +248,8 @@
             // 
             // Price
             // 
+            this.Price.DecimalPlaces = 2;
             this.Price.Enabled = false;
-            this.Price.Increment = new decimal(new int[] {
-            2,
-            0,
-            0,
-            0});
             this.Price.Location = new System.Drawing.Point(145, 333);
             this.Price.Maximum = new decimal(new int[] {
             100000000,
@@ -258,7 +292,7 @@
             // textName
             // 
             this.textName.Enabled = false;
-            this.textName.Location = new System.Drawing.Point(145, 151);
+            this.textName.Location = new System.Drawing.Point(145, 169);
             this.textName.Name = "textName";
             this.textName.Size = new System.Drawing.Size(181, 22);
             this.textName.TabIndex = 9;
@@ -267,7 +301,7 @@
             // 
             this.label4.AutoSize = true;
             this.label4.Font = new System.Drawing.Font("Microsoft YaHei", 9F, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label4.Location = new System.Drawing.Point(141, 124);
+            this.label4.Location = new System.Drawing.Point(141, 146);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(113, 20);
             this.label4.TabIndex = 8;
@@ -277,7 +311,7 @@
             // 
             this.pictureBox1.ErrorImage = global::HQTCSDL.Properties.Resources.Untitled_1_3;
             this.pictureBox1.Image = global::HQTCSDL.Properties.Resources.Untitled_1_3;
-            this.pictureBox1.Location = new System.Drawing.Point(25, 91);
+            this.pictureBox1.Location = new System.Drawing.Point(25, 76);
             this.pictureBox1.Name = "pictureBox1";
             this.pictureBox1.Size = new System.Drawing.Size(110, 83);
             this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
@@ -288,11 +322,22 @@
             // 
             this.label3.AutoSize = true;
             this.label3.Font = new System.Drawing.Font("MingLiU_HKSCS-ExtB", 19.8F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))), System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label3.Location = new System.Drawing.Point(111, 40);
+            this.label3.Location = new System.Drawing.Point(114, 24);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(177, 33);
             this.label3.TabIndex = 6;
             this.label3.Text = "Thông tin";
+            // 
+            // btnNhap
+            // 
+            this.btnNhap.Location = new System.Drawing.Point(42, 165);
+            this.btnNhap.Name = "btnNhap";
+            this.btnNhap.Size = new System.Drawing.Size(75, 24);
+            this.btnNhap.TabIndex = 21;
+            this.btnNhap.Text = "Nhập";
+            this.btnNhap.UseVisualStyleBackColor = true;
+            this.btnNhap.Visible = false;
+            this.btnNhap.Click += new System.EventHandler(this.btnNhap_Click);
             // 
             // FProduct
             // 
@@ -337,9 +382,13 @@
         private System.Windows.Forms.NumericUpDown Price;
         private System.Windows.Forms.Button button3;
         private System.Windows.Forms.Label label7;
-        private System.Windows.Forms.Button button4;
+        private System.Windows.Forms.Button btn_sua;
         private System.Windows.Forms.Button button6;
         private System.Windows.Forms.Button button5;
         private System.Windows.Forms.Button button7;
+        private System.Windows.Forms.TextBox textId;
+        private System.Windows.Forms.Label label8;
+        private System.Windows.Forms.TextBox idVoucher;
+        private System.Windows.Forms.Button btnNhap;
     }
 }
