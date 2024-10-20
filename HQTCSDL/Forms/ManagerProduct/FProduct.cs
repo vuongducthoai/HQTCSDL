@@ -1,18 +1,10 @@
 ﻿using HQTCSDL.Forms.ManagerProduct.Page;
 using HQTCSDL.model;
 using System;
-using System.Collections.Generic;
-using System.ComponentModel;
 using System.Data;
-using System.Diagnostics;
 using System.Drawing;
 using System.IO;
-using System.Linq;
-using System.Security.Cryptography;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
-using System.Xml.Linq;
 
 namespace HQTCSDL.Forms.ManagerProduct
 {
@@ -21,7 +13,7 @@ namespace HQTCSDL.Forms.ManagerProduct
         private int chedo = 0; //bam sua
         Product product = new Product();
         Service service = new Service();
-        string imagePath = Path.Combine(Directory.GetParent(Directory.GetParent(AppDomain.CurrentDomain.BaseDirectory).Parent.FullName).Parent.FullName,"HQTCSDL", "image", "Untitled-1-3.png");
+        string imagePath = Path.Combine(Directory.GetParent(Directory.GetParent(AppDomain.CurrentDomain.BaseDirectory).Parent.FullName).Parent.FullName, "HQTCSDL", "image", "Untitled-1-3.png");
 
         public FProduct()
         {
@@ -43,7 +35,7 @@ namespace HQTCSDL.Forms.ManagerProduct
         private void LoadTableAllProduct()
         {
             try
-            {                
+            {
                 dataGridView1.RowTemplate.Height = 60;
                 dataGridView1.DataSource = product.getAllProducts();
                 dataGridView1.Columns["IdProduct"].HeaderText = "Mã Sản Phẩm";
@@ -54,8 +46,9 @@ namespace HQTCSDL.Forms.ManagerProduct
                 picol1.ImageLayout = DataGridViewImageCellLayout.Stretch;
 
             }
-            catch (Exception ex){
-             
+            catch (Exception ex)
+            {
+
             }
         }
         private void Reset()
@@ -121,7 +114,7 @@ namespace HQTCSDL.Forms.ManagerProduct
                     MessageBox.Show("Images are problematic", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     return;
                 }
-                if (product.updateProduct(id, name, pic,des, price))
+                if (product.updateProduct(id, name, pic, des, price))
                 {
                     MessageBox.Show("Cập nhập thành công", "Thành công", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 }
@@ -176,7 +169,7 @@ namespace HQTCSDL.Forms.ManagerProduct
                         MessageBox.Show("Không có gì để xóa", "Cảnh báo", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                     }
                 }
-                catch(Exception ex)
+                catch (Exception ex)
                 {
                     MessageBox.Show(ex.Message, "Err", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     return;
@@ -210,6 +203,69 @@ namespace HQTCSDL.Forms.ManagerProduct
                 Product_Infors form = new Product_Infors(id);
                 form.Show();
             }
+        }
+
+        private void button2_Click(object sender, EventArgs e)
+        {
+            FFind form = new FFind();
+            DialogResult result = form.ShowDialog();
+            if (result == DialogResult.OK)
+            {
+                decimal price_start = form.price_start;
+                decimal price_end = form.price_end;
+                try
+                {
+                    if (form.id_category == 0)
+                    {
+                        dataGridView1.RowTemplate.Height = 60;
+                        dataGridView1.DataSource = product.SearchProduct(textSearch.Text, price_start,
+                            price_end, null);
+                        dataGridView1.Columns["IdProduct"].HeaderText = "Mã Sản Phẩm";
+                        dataGridView1.Columns["NameProduct"].HeaderText = "Tên Sản Phẩm";
+                        dataGridView1.Columns["Image"].HeaderText = "Ảnh";
+                        dataGridView1.Columns["price"].HeaderText = "Giá";
+                        DataGridViewImageColumn picol1 = (DataGridViewImageColumn)dataGridView1.Columns[2];
+                        picol1.ImageLayout = DataGridViewImageCellLayout.Stretch;
+                    }
+                    else
+                    {
+                        dataGridView1.RowTemplate.Height = 60;
+                        dataGridView1.DataSource = product.SearchProduct(textSearch.Text, price_start,
+                            price_end, form.id_category);
+                        dataGridView1.Columns["IdProduct"].HeaderText = "Mã Sản Phẩm";
+                        dataGridView1.Columns["NameProduct"].HeaderText = "Tên Sản Phẩm";
+                        dataGridView1.Columns["Image"].HeaderText = "Ảnh";
+                        dataGridView1.Columns["price"].HeaderText = "Giá";
+                        DataGridViewImageColumn picol1 = (DataGridViewImageColumn)dataGridView1.Columns[2];
+                        picol1.ImageLayout = DataGridViewImageCellLayout.Stretch;
+
+                    }
+                }
+                catch { }
+            }
+        }
+
+        private void Price_ValueChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                dataGridView1.RowTemplate.Height = 60;
+                dataGridView1.DataSource = product.SearchProduct(textSearch.Text,null,
+                    null, null);
+                dataGridView1.Columns["IdProduct"].HeaderText = "Mã Sản Phẩm";
+                dataGridView1.Columns["NameProduct"].HeaderText = "Tên Sản Phẩm";
+                dataGridView1.Columns["Image"].HeaderText = "Ảnh";
+                dataGridView1.Columns["price"].HeaderText = "Giá";
+                DataGridViewImageColumn picol1 = (DataGridViewImageColumn)dataGridView1.Columns[2];
+                picol1.ImageLayout = DataGridViewImageCellLayout.Stretch;
+
+            }
+            catch { }
         }
     }
 }

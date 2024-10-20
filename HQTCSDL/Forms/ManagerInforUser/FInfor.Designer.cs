@@ -85,11 +85,11 @@
             // 
             this.textAge.Enabled = false;
             this.textAge.Location = new System.Drawing.Point(260, 245);
-            this.textAge.Minimum = new decimal(new int[] {
-            1,
+            this.textAge.Maximum = new decimal(new int[] {
+            1000,
             0,
             0,
-            -2147483648});
+            0});
             this.textAge.Name = "textAge";
             this.textAge.Size = new System.Drawing.Size(109, 22);
             this.textAge.TabIndex = 14;
