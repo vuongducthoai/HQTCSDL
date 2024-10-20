@@ -28,5 +28,47 @@ namespace HQTCSDL.model
             db.closeConnection();
             return false;
         }
+        public DataTable getAllProducts()
+        {
+            DataTable dataTable = new DataTable();
+            SqlCommand cmd = new SqlCommand("SELECT " +
+                "IdProduct,NameProduct,Image,Price " +
+                "FROM VIEW_PRODUCT_INFORMATION", db.getConnection);
+            SqlDataAdapter adapter = new SqlDataAdapter(cmd);
+            try
+            {
+                db.openConnection();
+                adapter.Fill(dataTable);
+                db.closeConnection();
+                return dataTable;
+
+            }
+            catch (Exception)
+            {
+                db.closeConnection();
+            }
+            return null;
+        }
+        public DataTable getProductById(int id)
+        {
+            DataTable dataTable = new DataTable();
+            SqlCommand cmd = new SqlCommand("SELECT " +
+                "IdProduct,NameProduct,Description,Price " +
+                "FROM VIEW_PRODUCT_INFORMATION WHERE IdProduct = @id", db.getConnection);
+            SqlDataAdapter adapter = new SqlDataAdapter(cmd);
+            try
+            {
+                db.openConnection();
+                adapter.Fill(dataTable);
+                db.closeConnection();
+                return dataTable;
+
+            }
+            catch (Exception)
+            {
+                db.closeConnection();
+            }
+            return null;
+        }
     }
 }
