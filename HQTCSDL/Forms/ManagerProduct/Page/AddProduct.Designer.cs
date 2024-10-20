@@ -54,6 +54,7 @@
             // 
             // Price
             // 
+            this.Price.DecimalPlaces = 2;
             this.Price.Location = new System.Drawing.Point(228, 355);
             this.Price.Name = "Price";
             this.Price.Size = new System.Drawing.Size(120, 22);
