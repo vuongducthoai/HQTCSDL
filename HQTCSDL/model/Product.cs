@@ -11,6 +11,7 @@ namespace HQTCSDL.model
 {
     internal class Product
     {
+
         My_DB db = new My_DB();
         public bool AddProduct(string name,MemoryStream image,string des,decimal price)
         {
