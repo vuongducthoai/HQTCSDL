@@ -57,10 +57,10 @@ namespace HQTCSDL
             this.mainPanel.BackColor = System.Drawing.Color.Transparent;
             this.mainPanel.Controls.Add(this.headerPanel);
             this.mainPanel.Controls.Add(this.controlPanel);
-            this.mainPanel.Location = new System.Drawing.Point(243, 11);
+            this.mainPanel.Location = new System.Drawing.Point(215, 14);
             this.mainPanel.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.mainPanel.Name = "mainPanel";
-            this.mainPanel.Size = new System.Drawing.Size(927, 651);
+            this.mainPanel.Size = new System.Drawing.Size(1066, 696);
             this.mainPanel.TabIndex = 1;
             // 
             // headerPanel
@@ -97,7 +97,7 @@ namespace HQTCSDL
             this.button1.Location = new System.Drawing.Point(3, 66);
             this.button1.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(234, 60);
+            this.button1.Size = new System.Drawing.Size(200, 60);
             this.button1.TabIndex = 0;
             this.button1.Text = "Sản Phẩm";
             this.button1.UseVisualStyleBackColor = true;
@@ -114,10 +114,10 @@ namespace HQTCSDL
             this.flowLayoutPanel1.Controls.Add(this.button5);
             this.flowLayoutPanel1.Controls.Add(this.button7);
             this.flowLayoutPanel1.Controls.Add(this.button8);
-            this.flowLayoutPanel1.Location = new System.Drawing.Point(-2, 136);
+            this.flowLayoutPanel1.Location = new System.Drawing.Point(-2, 186);
             this.flowLayoutPanel1.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.flowLayoutPanel1.Name = "flowLayoutPanel1";
-            this.flowLayoutPanel1.Size = new System.Drawing.Size(239, 526);
+            this.flowLayoutPanel1.Size = new System.Drawing.Size(211, 524);
             this.flowLayoutPanel1.TabIndex = 4;
             // 
             // btn_infor
@@ -136,7 +136,7 @@ namespace HQTCSDL
             this.button6.Location = new System.Drawing.Point(3, 130);
             this.button6.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.button6.Name = "button6";
-            this.button6.Size = new System.Drawing.Size(234, 60);
+            this.button6.Size = new System.Drawing.Size(200, 60);
             this.button6.TabIndex = 5;
             this.button6.Text = "Danh mục";
             this.button6.UseVisualStyleBackColor = true;
@@ -146,7 +146,7 @@ namespace HQTCSDL
             this.button2.Location = new System.Drawing.Point(3, 194);
             this.button2.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(234, 60);
+            this.button2.Size = new System.Drawing.Size(200, 60);
             this.button2.TabIndex = 1;
             this.button2.Text = "Khách hàng";
             this.button2.UseVisualStyleBackColor = true;
@@ -156,7 +156,7 @@ namespace HQTCSDL
             this.button3.Location = new System.Drawing.Point(3, 258);
             this.button3.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.button3.Name = "button3";
-            this.button3.Size = new System.Drawing.Size(234, 60);
+            this.button3.Size = new System.Drawing.Size(200, 60);
             this.button3.TabIndex = 2;
             this.button3.Text = "Nhà cung cấp";
             this.button3.UseVisualStyleBackColor = true;
@@ -166,27 +166,29 @@ namespace HQTCSDL
             this.button4.Location = new System.Drawing.Point(3, 322);
             this.button4.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.button4.Name = "button4";
-            this.button4.Size = new System.Drawing.Size(234, 60);
+            this.button4.Size = new System.Drawing.Size(200, 60);
             this.button4.TabIndex = 3;
             this.button4.Text = "Đơn hàng";
             this.button4.UseVisualStyleBackColor = true;
+            this.button4.Click += new System.EventHandler(this.button4_Click);
             // 
             // button5
             // 
             this.button5.Location = new System.Drawing.Point(3, 386);
             this.button5.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.button5.Name = "button5";
-            this.button5.Size = new System.Drawing.Size(234, 60);
+            this.button5.Size = new System.Drawing.Size(200, 60);
             this.button5.TabIndex = 4;
             this.button5.Text = "Nhập hàng";
             this.button5.UseVisualStyleBackColor = true;
+            this.button5.Click += new System.EventHandler(this.button5_Click);
             // 
             // button7
             // 
             this.button7.Location = new System.Drawing.Point(3, 450);
             this.button7.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.button7.Name = "button7";
-            this.button7.Size = new System.Drawing.Size(234, 60);
+            this.button7.Size = new System.Drawing.Size(200, 60);
             this.button7.TabIndex = 6;
             this.button7.Text = "Ưu đãi";
             this.button7.UseVisualStyleBackColor = true;
@@ -196,7 +198,7 @@ namespace HQTCSDL
             this.button8.Location = new System.Drawing.Point(3, 514);
             this.button8.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.button8.Name = "button8";
-            this.button8.Size = new System.Drawing.Size(234, 60);
+            this.button8.Size = new System.Drawing.Size(200, 60);
             this.button8.TabIndex = 7;
             this.button8.Text = "Thống kê";
             this.button8.UseVisualStyleBackColor = true;
@@ -204,27 +206,27 @@ namespace HQTCSDL
             // pictureBox1
             // 
             this.pictureBox1.Image = global::HQTCSDL.Properties.Resources.logo;
-            this.pictureBox1.Location = new System.Drawing.Point(-2, 6);
+            this.pictureBox1.Location = new System.Drawing.Point(-2, 8);
             this.pictureBox1.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(239, 128);
+            this.pictureBox1.Size = new System.Drawing.Size(203, 174);
             this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.pictureBox1.TabIndex = 3;
             this.pictureBox1.TabStop = false;
             // 
             // FMain
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.BackColor = System.Drawing.Color.Azure;
-            this.ClientSize = new System.Drawing.Size(1182, 673);
+            this.BackColor = System.Drawing.SystemColors.GradientActiveCaption;
+            this.ClientSize = new System.Drawing.Size(1292, 715);
             this.Controls.Add(this.flowLayoutPanel1);
             this.Controls.Add(this.pictureBox1);
             this.Controls.Add(this.mainPanel);
-            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedToolWindow;
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.SizableToolWindow;
             this.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.Name = "FMain";
-            this.Load += new System.EventHandler(this.FMain_Load);
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.mainPanel.ResumeLayout(false);
             this.headerPanel.ResumeLayout(false);
             this.headerPanel.PerformLayout();
