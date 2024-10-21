@@ -158,7 +158,7 @@
             this.label3.Font = new System.Drawing.Font("Microsoft YaHei UI", 19.8F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))), System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label3.Location = new System.Drawing.Point(57, 38);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(251, 45);
+            this.label3.Size = new System.Drawing.Size(245, 44);
             this.label3.TabIndex = 6;
             this.label3.Text = "Sửa thông tin";
             // 
@@ -207,6 +207,7 @@
             this.dataGridView1.Size = new System.Drawing.Size(438, 343);
             this.dataGridView1.TabIndex = 0;
             this.dataGridView1.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView1_CellClick);
+            this.dataGridView1.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView1_CellDoubleClick);
             // 
             // FVoucher
             // 
