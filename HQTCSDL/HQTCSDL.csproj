@@ -53,6 +53,12 @@
     <Compile Include="FMain.Designer.cs">
       <DependentUpon>FMain.cs</DependentUpon>
     </Compile>
+    <Compile Include="Forms\ManagementSupplier\FSupplier.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\ManagementSupplier\FSupplier.Designer.cs">
+      <DependentUpon>FSupplier.cs</DependentUpon>
+    </Compile>
     <Compile Include="Forms\ManagerInforUser\FInfor.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -73,12 +79,16 @@
     </Compile>
     <Compile Include="model\Product.cs" />
     <Compile Include="model\Service.cs" />
+    <Compile Include="model\Supplier.cs" />
     <Compile Include="model\Users.cs" />
-    <Compile Include="My_DB.cs" />
+    <Compile Include="model\My_DB.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <EmbeddedResource Include="FMain.resx">
       <DependentUpon>FMain.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\ManagementSupplier\FSupplier.resx">
+      <DependentUpon>FSupplier.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\ManagerInforUser\FInfor.resx">
       <DependentUpon>FInfor.cs</DependentUpon>
@@ -117,6 +127,7 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="image\istockphoto-1337144146-612x612.jpg" />
+    <None Include="image\supplier.png" />
     <Content Include="image\Untitled-1-3.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
