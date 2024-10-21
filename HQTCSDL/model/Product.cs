@@ -4,9 +4,11 @@ using System.Data;
 using System.Data.SqlClient;
 using System.IO;
 using System.Linq;
+using System.Security.Cryptography;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using System.Xml.Linq;
 
 namespace HQTCSDL.model
 {
@@ -110,6 +112,24 @@ namespace HQTCSDL.model
             cmd.Parameters.AddWithValue("@PRICE", price);
             cmd.Parameters.AddWithValue("@DES", des);   
             cmd.Parameters.AddWithValue("@ID_VOUCHER", DBNull.Value);
+            db.openConnection();
+            if (cmd.ExecuteNonQuery() == 1)
+            {
+                db.closeConnection();
+                return true;
+            }
+            db.closeConnection();
+            return false;
+        }
+        public bool AddVoucher(int id,int? id_voucher)
+        {
+            SqlCommand cmd = new SqlCommand("EXEC UPDATE_PRODUCT @ID,@NAME,@IMAGE,@PRICE,@DES,@ID_VOUCHER", db.getConnection);
+            cmd.Parameters.AddWithValue("@ID", id);
+            cmd.Parameters.Add("@NAME",SqlDbType.NVarChar).Value = DBNull.Value;
+            cmd.Parameters.Add("@IMAGE", SqlDbType.VarBinary).Value = DBNull.Value;
+            cmd.Parameters.Add("@PRICE", SqlDbType.Decimal).Value = DBNull.Value;
+            cmd.Parameters.Add("@DES", SqlDbType.NVarChar).Value = DBNull.Value;
+            cmd.Parameters.AddWithValue("@ID_VOUCHER", (Object)id_voucher ?? DBNull.Value);
             db.openConnection();
             if (cmd.ExecuteNonQuery() == 1)
             {

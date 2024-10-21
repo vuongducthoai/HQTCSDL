@@ -155,26 +155,30 @@ namespace HQTCSDL.Forms.ManagerProduct
 
         private void button6_Click(object sender, EventArgs e)
         {
-            if (textId.Text.Trim().Length > 0)
+            DialogResult result = MessageBox.Show("Khi nhấn yes thì sẽ xóa hết tất cả các bill liên quan", "Warning", MessageBoxButtons.YesNo, MessageBoxIcon.Warning);
+            if (result == DialogResult.Yes)
             {
-                int id = Convert.ToInt32(textId.Text.Trim());
-                try
+                if (textId.Text.Trim().Length > 0)
                 {
-                    if (product.deleteProduct(id))
+                    int id = Convert.ToInt32(textId.Text.Trim());
+                    try
                     {
-                        MessageBox.Show("Xóa thành công", "Thành công", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                        if (product.deleteProduct(id))
+                        {
+                            MessageBox.Show("Xóa thành công", "Thành công", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                        }
+                        else
+                        {
+                            MessageBox.Show("Không có gì để xóa", "Cảnh báo", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                        }
                     }
-                    else
+                    catch (Exception ex)
                     {
-                        MessageBox.Show("Không có gì để xóa", "Cảnh báo", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                        MessageBox.Show(ex.Message, "Err", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        return;
                     }
+                    Reset();
                 }
-                catch (Exception ex)
-                {
-                    MessageBox.Show(ex.Message, "Err", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                    return;
-                }
-                Reset();
             }
         }
 
@@ -266,6 +270,16 @@ namespace HQTCSDL.Forms.ManagerProduct
 
             }
             catch { }
+        }
+
+        private void button3_Click(object sender, EventArgs e)
+        {
+            if (textId.Text.Trim().Length > 0)
+            {
+                int id = Convert.ToInt32(textId.Text.Trim());
+                AddVoucherForProduct form = new AddVoucherForProduct(id);
+                form.Show();
+            }
         }
     }
 }

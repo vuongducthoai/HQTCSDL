@@ -133,5 +133,16 @@ namespace HQTCSDL.Forms.ManagerVoucher
                 return;
             }
         }
+
+        private void dataGridView1_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
+        {
+            if (e.RowIndex >= 0)
+            {
+                string idProduct = dataGridView1.Rows[e.RowIndex].Cells["IdVoucher"].Value.ToString();
+                int idPInfor = Convert.ToInt32(idProduct);
+                ListProductApplyVoucher form = new ListProductApplyVoucher(idPInfor);
+                form.Show();
+            }
+        }
     }
 }
