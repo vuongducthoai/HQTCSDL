@@ -35,6 +35,7 @@
   <ItemGroup>
     <Reference Include="System" />
     <Reference Include="System.Core" />
+    <Reference Include="System.Windows.Forms.DataVisualization" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
@@ -52,6 +53,12 @@
     </Compile>
     <Compile Include="FMain.Designer.cs">
       <DependentUpon>FMain.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\ManagementStatistic\StatisticChart.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\ManagementStatistic\StatisticChart.Designer.cs">
+      <DependentUpon>StatisticChart.cs</DependentUpon>
     </Compile>
     <Compile Include="Forms\ManagementSupplier\FSupplier.cs">
       <SubType>Form</SubType>
@@ -79,6 +86,7 @@
     </Compile>
     <Compile Include="model\Product.cs" />
     <Compile Include="model\Service.cs" />
+    <Compile Include="model\Statistic.cs" />
     <Compile Include="model\Supplier.cs" />
     <Compile Include="model\Users.cs" />
     <Compile Include="model\My_DB.cs" />
@@ -86,6 +94,9 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <EmbeddedResource Include="FMain.resx">
       <DependentUpon>FMain.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\ManagementStatistic\StatisticChart.resx">
+      <DependentUpon>StatisticChart.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\ManagementSupplier\FSupplier.resx">
       <DependentUpon>FSupplier.cs</DependentUpon>
