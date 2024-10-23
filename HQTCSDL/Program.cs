@@ -16,9 +16,13 @@ namespace HQTCSDL
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
+<<<<<<< HEAD
             //Application.Run(new FOrder());
             Application.Run(new Forms.Login.FLogin());
 
+=======
+            Application.Run(new StatisticChart());
+>>>>>>> parent of 4308481 (Merge branch 'master' into Thoai)
         }
     }
 }
