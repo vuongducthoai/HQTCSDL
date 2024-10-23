@@ -35,9 +35,11 @@ namespace HQTCSDL
             this.headerPanel = new System.Windows.Forms.Panel();
             this.label1 = new System.Windows.Forms.Label();
             this.controlPanel = new System.Windows.Forms.Panel();
+
             
             this.button7 = new System.Windows.Forms.Button();
             this.button8 = new System.Windows.Forms.Button();
+
             this.button1 = new System.Windows.Forms.Button();
             this.flowLayoutPanel1 = new System.Windows.Forms.FlowLayoutPanel();
             this.btn_infor = new System.Windows.Forms.Button();
@@ -88,12 +90,15 @@ namespace HQTCSDL
             // controlPanel
             // 
             this.controlPanel.BackColor = System.Drawing.Color.LightCyan;
+
             this.controlPanel.Location = new System.Drawing.Point(28, 64);
             this.controlPanel.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+
             this.controlPanel.Name = "controlPanel";
             this.controlPanel.Size = new System.Drawing.Size(924, 577);
             this.controlPanel.TabIndex = 0;
             // 
+
             // button9
             // 
             // 
@@ -124,6 +129,7 @@ namespace HQTCSDL
             this.button1.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(178, 35);
+
             this.button1.TabIndex = 0;
             this.button1.Text = "Sản Phẩm";
             this.button1.UseVisualStyleBackColor = true;
@@ -141,10 +147,12 @@ namespace HQTCSDL
             this.flowLayoutPanel1.Controls.Add(this.button5);
             this.flowLayoutPanel1.Controls.Add(this.button7);
             this.flowLayoutPanel1.Controls.Add(this.button8);
+
             this.flowLayoutPanel1.Location = new System.Drawing.Point(21, 149);
             this.flowLayoutPanel1.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.flowLayoutPanel1.Name = "flowLayoutPanel1";
             this.flowLayoutPanel1.Size = new System.Drawing.Size(188, 394);
+
             this.flowLayoutPanel1.TabIndex = 4;
             // 
             // btn_infor
@@ -152,7 +160,9 @@ namespace HQTCSDL
             this.btn_infor.Location = new System.Drawing.Point(3, 2);
             this.btn_infor.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.btn_infor.Name = "btn_infor";
+
             this.btn_infor.Size = new System.Drawing.Size(178, 35);
+
             this.btn_infor.TabIndex = 8;
             this.btn_infor.Text = "Thông tin cá nhân";
             this.btn_infor.UseVisualStyleBackColor = true;
@@ -160,10 +170,12 @@ namespace HQTCSDL
             // 
             // button6
             // 
+
             this.button6.Location = new System.Drawing.Point(3, 80);
             this.button6.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.button6.Name = "button6";
             this.button6.Size = new System.Drawing.Size(178, 35);
+
             this.button6.TabIndex = 5;
             this.button6.Text = "Danh mục";
             this.button6.UseVisualStyleBackColor = true;
@@ -173,17 +185,20 @@ namespace HQTCSDL
             this.button2.Location = new System.Drawing.Point(3, 194);
             this.button2.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.button2.Name = "button2";
+
             this.button2.Size = new System.Drawing.Size(178, 35);
+
             this.button2.TabIndex = 1;
             this.button2.Text = "Khách hàng";
             this.button2.UseVisualStyleBackColor = true;
             // 
             // button3
-            // 
+
             this.button3.Location = new System.Drawing.Point(3, 236);
             this.button3.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.button3.Name = "button3";
             this.button3.Size = new System.Drawing.Size(178, 35);
+
             this.button3.TabIndex = 2;
             this.button3.Text = "Nhà cung cấp";
             this.button3.UseVisualStyleBackColor = true;
@@ -191,24 +206,47 @@ namespace HQTCSDL
             // 
             // button4
             // 
+
             this.button4.Location = new System.Drawing.Point(3, 197);
             this.button4.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.button4.Name = "button4";
             this.button4.Size = new System.Drawing.Size(178, 35);
+
             this.button4.TabIndex = 3;
             this.button4.Text = "Đơn hàng";
             this.button4.UseVisualStyleBackColor = true;
             // 
             // button5
             // 
-            this.button5.Location = new System.Drawing.Point(3, 275);
+
+            this.button5.Location = new System.Drawing.Point(3, 386);
             this.button5.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.button5.Name = "button5";
-            this.button5.Size = new System.Drawing.Size(178, 35);
+            this.button5.Size = new System.Drawing.Size(234, 60);
             this.button5.TabIndex = 4;
             this.button5.Text = "Nhập hàng";
             this.button5.UseVisualStyleBackColor = true;
-            
+            // 
+            // button7
+            // 
+            this.button7.Location = new System.Drawing.Point(3, 450);
+            this.button7.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.button7.Name = "button7";
+            this.button7.Size = new System.Drawing.Size(234, 60);
+            this.button7.TabIndex = 6;
+            this.button7.Text = "Ưu đãi";
+            this.button7.UseVisualStyleBackColor = true;
+            // 
+            // button8
+            // 
+            this.button8.Location = new System.Drawing.Point(3, 514);
+            this.button8.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.button8.Name = "button8";
+            this.button8.Size = new System.Drawing.Size(234, 60);
+            this.button8.TabIndex = 7;
+            this.button8.Text = "Thống kê";
+            this.button8.UseVisualStyleBackColor = true;
+
             // 
             // pictureBox1
             // 
