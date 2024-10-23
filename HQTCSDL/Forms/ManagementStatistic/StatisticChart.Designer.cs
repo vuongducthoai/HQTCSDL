@@ -56,7 +56,7 @@
             this.dateTimePicker.CustomFormat = "dd/MM/yyyy";
             this.dateTimePicker.Font = new System.Drawing.Font("Microsoft Sans Serif", 13.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.dateTimePicker.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
-            this.dateTimePicker.Location = new System.Drawing.Point(39, 26);
+            this.dateTimePicker.Location = new System.Drawing.Point(59, 26);
             this.dateTimePicker.Name = "dateTimePicker";
             this.dateTimePicker.Size = new System.Drawing.Size(254, 34);
             this.dateTimePicker.TabIndex = 4;
@@ -68,13 +68,13 @@
             this.chart1.ChartAreas.Add(chartArea1);
             legend1.Name = "Legend1";
             this.chart1.Legends.Add(legend1);
-            this.chart1.Location = new System.Drawing.Point(0, 113);
+            this.chart1.Location = new System.Drawing.Point(59, 99);
             this.chart1.Name = "chart1";
             series1.ChartArea = "ChartArea1";
             series1.Legend = "Legend1";
             series1.Name = "Price";
             this.chart1.Series.Add(series1);
-            this.chart1.Size = new System.Drawing.Size(894, 419);
+            this.chart1.Size = new System.Drawing.Size(803, 419);
             this.chart1.TabIndex = 0;
             this.chart1.Text = "chart1";
             // 
@@ -99,6 +99,7 @@
             this.Controls.Add(this.dateTimePicker);
             this.Controls.Add(this.btnFilter);
             this.Controls.Add(this.chart1);
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.Name = "StatisticChart";
             this.Text = "Chart";
             ((System.ComponentModel.ISupportInitialize)(this.chart1)).EndInit();
