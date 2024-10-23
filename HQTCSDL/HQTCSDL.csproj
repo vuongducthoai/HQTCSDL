@@ -108,7 +108,10 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="model\BillTemp.cs" />
+    <Compile Include="model\CatalogTemp.cs" />
     <Compile Include="Config.cs" />
+    <Compile Include="model\CustomerTemp.cs" />
     <Compile Include="FMain.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -230,6 +233,7 @@
     <Compile Include="My_DB.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="model\SupplyerTemp.cs" />
     <Compile Include="UserControlProduct.cs">
       <SubType>UserControl</SubType>
     </Compile>
