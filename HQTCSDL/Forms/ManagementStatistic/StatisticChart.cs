@@ -68,3 +68,6 @@ namespace HQTCSDL.Forms.ManagementStatistic
         }
     }
 }
+
+
+
