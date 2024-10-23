@@ -68,13 +68,13 @@
             this.chart1.ChartAreas.Add(chartArea1);
             legend1.Name = "Legend1";
             this.chart1.Legends.Add(legend1);
-            this.chart1.Location = new System.Drawing.Point(0, 113);
+            this.chart1.Location = new System.Drawing.Point(48, 99);
             this.chart1.Name = "chart1";
             series1.ChartArea = "ChartArea1";
             series1.Legend = "Legend1";
             series1.Name = "Price";
             this.chart1.Series.Add(series1);
-            this.chart1.Size = new System.Drawing.Size(894, 419);
+            this.chart1.Size = new System.Drawing.Size(815, 419);
             this.chart1.TabIndex = 0;
             this.chart1.Text = "chart1";
             // 
@@ -99,6 +99,8 @@
             this.Controls.Add(this.dateTimePicker);
             this.Controls.Add(this.btnFilter);
             this.Controls.Add(this.chart1);
+            this.Cursor = System.Windows.Forms.Cursors.NoMove2D;
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.Name = "StatisticChart";
             this.Text = "Chart";
             ((System.ComponentModel.ISupportInitialize)(this.chart1)).EndInit();
