@@ -1,10 +1,7 @@
-﻿using MySql.Data.MySqlClient;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Data;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using System.Data.SqlClient;
 
 namespace HQTCSDL
 {
@@ -13,14 +10,16 @@ namespace HQTCSDL
         public int IdSupplier { get; set; }
         public string NameSupplier { get; set; }
         public string Phone { get; set; }
-        public int Áddress { get; set; }
+        public string Address { get; set; } // Sửa lỗi từ "Áddress" thành "Address" và chuyển kiểu thành string
 
         My_DB db = new My_DB();
+
+        // Lấy tất cả thông tin nhà cung cấp
         public DataTable GetAllSupplyers()
         {
             DataTable dataTable = new DataTable();
-            MySqlCommand cmd = new MySqlCommand("SELECT IdSupplier, NameSupplier, Phone FROM Supplier", db.getConnection);
-            MySqlDataAdapter adapter = new MySqlDataAdapter(cmd);
+            SqlCommand cmd = new SqlCommand("SELECT IdSupplier, NameSupplier, Phone FROM Supplier", db.getConnection);
+            SqlDataAdapter adapter = new SqlDataAdapter(cmd);
             try
             {
                 db.openConnection();

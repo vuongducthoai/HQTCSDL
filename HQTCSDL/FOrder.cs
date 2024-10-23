@@ -33,8 +33,8 @@ namespace HQTCSDL
         {
             DataTable dt = new DataTable();
             string query = "Select * from Voucher";
-            MySqlCommand command = new MySqlCommand(query, db.getConnection);
-            MySqlDataAdapter adapter = new MySqlDataAdapter(command);
+            SqlCommand command = new SqlCommand(query, db.getConnection);
+            SqlDataAdapter adapter = new SqlDataAdapter(command);
             try
             {
                 db.openConnection();
@@ -99,7 +99,7 @@ namespace HQTCSDL
         private void LoadCatalogs()
         {
             string query = "SELECT IdCategory, NameCategory FROM Category"; // Lấy danh mục
-            MySqlDataAdapter adapter = new MySqlDataAdapter(query, db.getConnection);
+            SqlDataAdapter adapter = new SqlDataAdapter(query, db.getConnection);
             DataTable dataTable = new DataTable();
             adapter.Fill(dataTable);
 
@@ -139,7 +139,7 @@ namespace HQTCSDL
 
         private void LoadProducts(string query)
         {
-            MySqlDataAdapter adapter = new MySqlDataAdapter(query, db.getConnection);
+            SqlDataAdapter adapter = new SqlDataAdapter(query, db.getConnection);
             DataTable dataTable = new DataTable();
             adapter.Fill(dataTable);
 
@@ -313,7 +313,7 @@ namespace HQTCSDL
             db.openConnection();
             string query = "INSERT INTO Bill (IdCustomer, IdVoucher, IdUser) VALUES (@IdCustomer, @IdVoucher, @IdUser); SELECT LAST_INSERT_ID();";
 
-            using (MySqlCommand cmd = new MySqlCommand(query, db.getConnection))
+            using (SqlCommand cmd = new SqlCommand(query, db.getConnection))
             {
                 cmd.Parameters.AddWithValue("@IdCustomer", customerId);
                 cmd.Parameters.AddWithValue("@IdUser", 1);
@@ -336,7 +336,7 @@ namespace HQTCSDL
         private int GetProductInforId(int productId, string size, string color)
         {
             string query = "SELECT IdPInfor FROM Product_Infor WHERE IdProduct = @IdProduct AND Size = @Size AND Color = @Color";
-            MySqlCommand cmd = new MySqlCommand(query, db.getConnection);
+            SqlCommand cmd = new SqlCommand(query, db.getConnection);
             cmd.Parameters.AddWithValue("@IdProduct", productId);
             cmd.Parameters.AddWithValue("@Size", size);
             cmd.Parameters.AddWithValue("@Color", color);
@@ -349,7 +349,7 @@ namespace HQTCSDL
         {
             db.openConnection();
             string query = "SELECT Discount FROM Voucher WHERE IdVoucher = @IdVoucher";
-            MySqlCommand cmd = new MySqlCommand(query, db.getConnection);
+            SqlCommand cmd = new SqlCommand(query, db.getConnection);
             cmd.Parameters.AddWithValue("@IdVoucher", voucherId);
             object result = cmd.ExecuteScalar();
             db.closeConnection();
@@ -450,7 +450,7 @@ namespace HQTCSDL
             db.openConnection();
             string query = "DELETE FROM Bill WHERE IdBill = @IdBill;";
 
-            using (MySqlCommand command = new MySqlCommand(query, db.getConnection))
+            using (SqlCommand command = new SqlCommand(query, db.getConnection))
             {
                 command.Parameters.AddWithValue("@IdBill", id);
                 int rowsAffected = command.ExecuteNonQuery();
@@ -462,13 +462,10 @@ namespace HQTCSDL
         private void ProcessPayment(int billId)
         {
             db.openConnection();
-
-            // Bắt đầu transaction
-            using (MySqlTransaction transaction = db.getConnection.BeginTransaction())
+            using (SqlTransaction transaction = db.getConnection.BeginTransaction())
             {
                 try
                 {
-                    // Lặp qua từng sản phẩm trong DataGridView
                     foreach (DataGridViewRow row in dtgrvOrderBill.Rows)
                     {
                         if (row.IsNewRow) continue;
@@ -477,51 +474,39 @@ namespace HQTCSDL
                         string size = row.Cells["size"].Value.ToString();
                         string color = row.Cells["color"].Value.ToString();
                         int quantity = Convert.ToInt32(row.Cells["quantity"].Value);
-
-                        // Lấy IdPInfor tương ứng với sản phẩm
                         int productInforId = GetProductInforId(productId, size, color);
-
-                        // Khai báo biến để nhận thông điệp lỗi từ stored procedure
                         string errorMsg;
-
-                        // Gọi stored procedure để thêm BillInfor và cập nhật hàng tồn
-                        using (MySqlCommand cmd = new MySqlCommand("AddBillAndUpdateStock", db.getConnection, transaction))
+                        using (SqlCommand cmd = new SqlCommand("AddBillAndUpdateStock", db.getConnection, transaction))
                         {
                             cmd.CommandType = CommandType.StoredProcedure;
                             cmd.Parameters.AddWithValue("p_IdBill", billId);
                             cmd.Parameters.AddWithValue("p_IdPInfor", productInforId);
                             cmd.Parameters.AddWithValue("p_Quantity", quantity);
-                            cmd.Parameters.Add("p_ErrorMsg", MySqlDbType.VarChar).Direction = ParameterDirection.Output;
+                            cmd.Parameters.Add("p_ErrorMsg", SqlDbType.VarChar).Direction = ParameterDirection.Output;
 
-                            cmd.ExecuteNonQuery(); // Thực thi stored procedure
+                            cmd.ExecuteNonQuery(); 
 
-                            // Lấy thông điệp lỗi
                             errorMsg = cmd.Parameters["p_ErrorMsg"].Value.ToString();
                             if (errorMsg != "Success")
                             {
                                 MessageBox.Show("Có lỗi xảy ra: " + errorMsg);
                                 transaction.Rollback(); // Rollback transaction nếu có lỗi
-                                return; // Ngừng quá trình nếu có lỗi
+                                return; 
                             }
                         }
                     }
-
-                    // Commit transaction
                     transaction.Commit();
-
-                    // Thông báo thanh toán thành công
                     MessageBox.Show("Thanh toán thành công!");
                     dtgrvOrderBill.Rows.Clear();
                 }
                 catch (Exception ex)
                 {
-                    // Rollback transaction nếu có lỗi
                     transaction.Rollback();
                     MessageBox.Show("Có lỗi xảy ra: " + ex.Message);
                 }
                 finally
                 {
-                    db.closeConnection(); // Đảm bảo kết thúc kết nối
+                    db.closeConnection();
                 }
             }
         }
@@ -536,15 +521,15 @@ namespace HQTCSDL
         {
             dtgrvManageOrder.DataSource= null;
 
-            DateTime fromDate = dtpkFrom.Value.Date;  // Lấy ngày bắt đầu
-            DateTime toDate = dtpkTo.Value.Date.AddDays(1).AddTicks(-1);  // Lấy ngày kết thúc (bao gồm cả ngày đó)
+            DateTime fromDate = dtpkFrom.Value.Date;  
+            DateTime toDate = dtpkTo.Value.Date.AddDays(1).AddTicks(-1);  
 
             string query = $"SELECT IdBill, CustomerName, UserName, BillDate, TotalBill, Voucher " +
                            $"FROM View_Bills " +
                            $"WHERE BillDate BETWEEN '{fromDate:yyyy-MM-dd HH:mm:ss}' AND '{toDate:yyyy-MM-dd HH:mm:ss}'";
 
-            MySqlCommand command = new MySqlCommand(query, db.getConnection);
-            MySqlDataAdapter adapter = new MySqlDataAdapter(command);
+            SqlCommand command = new SqlCommand(query, db.getConnection);
+            SqlDataAdapter adapter = new SqlDataAdapter(command);
             DataTable dt = new DataTable();
             adapter.Fill(dt);
 
@@ -567,8 +552,8 @@ namespace HQTCSDL
 
             string query = $"SELECT * FROM View_BillDetails WHERE IdBill = {billId}";
 
-            MySqlCommand command = new MySqlCommand(query, db.getConnection);
-            MySqlDataAdapter adapter = new MySqlDataAdapter(command);
+            SqlCommand command = new SqlCommand(query, db.getConnection);
+            SqlDataAdapter adapter = new SqlDataAdapter(command);
             DataTable dt = new DataTable();
             adapter.Fill(dt);
 

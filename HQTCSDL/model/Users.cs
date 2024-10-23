@@ -1,11 +1,7 @@
-﻿using MySql.Data.MySqlClient;
-using System;
-using System.Collections.Generic;
+﻿using System;
 using System.Data;
+using System.Data.SqlClient; // Sử dụng SqlClient cho SQL Server
 using System.IO;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace HQTCSDL.model
 {
@@ -17,12 +13,12 @@ namespace HQTCSDL.model
         public DataTable getUser(int id)
         {
             DataTable dataTable = new DataTable();
-            MySqlCommand cmd = new MySqlCommand("SELECT " +
+            SqlCommand cmd = new SqlCommand("SELECT " +
                 "IdUser, Name, Avatar, YearOfBirth, Address, Role " +
                 "FROM VIEW_INFOR_USERS WHERE IdUser = @uid", db.getConnection);
-            cmd.Parameters.Add("@uid", MySqlDbType.Int32).Value = id;
+            cmd.Parameters.Add("@uid", SqlDbType.Int).Value = id; // Thay MySqlDbType.Int32 bằng SqlDbType.Int
 
-            MySqlDataAdapter adapter = new MySqlDataAdapter(cmd);
+            SqlDataAdapter adapter = new SqlDataAdapter(cmd); // Thay MySqlDataAdapter bằng SqlDataAdapter
             try
             {
                 db.openConnection();
@@ -40,12 +36,13 @@ namespace HQTCSDL.model
         // Cập nhật thông tin người dùng
         public bool updateUser(int Id, string name, MemoryStream pic, int year, string address)
         {
-            MySqlCommand cmd = new MySqlCommand("CALL UPDATE_USERS (@id, @name, @year, @avatar, @address)", db.getConnection);
-            cmd.Parameters.Add("@id", MySqlDbType.Int32).Value = Id;
-            cmd.Parameters.Add("@name", MySqlDbType.VarChar).Value = name;
-            cmd.Parameters.Add("@avatar", MySqlDbType.Blob).Value = pic.ToArray();
-            cmd.Parameters.Add("@year", MySqlDbType.Int32).Value = year;
-            cmd.Parameters.Add("@address", MySqlDbType.VarChar).Value = address;
+            // Thay MySqlCommand bằng SqlCommand và thay đổi cú pháp cho SQL Server
+            SqlCommand cmd = new SqlCommand("EXEC UPDATE_USERS @id, @name, @year, @avatar, @address", db.getConnection);
+            cmd.Parameters.Add("@id", SqlDbType.Int).Value = Id; // Thay MySqlDbType.Int32 bằng SqlDbType.Int
+            cmd.Parameters.Add("@name", SqlDbType.VarChar).Value = name;
+            cmd.Parameters.Add("@avatar", SqlDbType.VarBinary).Value = pic.ToArray(); // Sử dụng VarBinary cho hình ảnh
+            cmd.Parameters.Add("@year", SqlDbType.Int).Value = year;
+            cmd.Parameters.Add("@address", SqlDbType.VarChar).Value = address;
 
             db.openConnection();
             if (cmd.ExecuteNonQuery() == 1)
@@ -56,6 +53,5 @@ namespace HQTCSDL.model
             db.closeConnection();
             return false;
         }
-       
     }
 }

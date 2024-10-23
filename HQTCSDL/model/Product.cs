@@ -1,11 +1,7 @@
-﻿using MySql.Data.MySqlClient;
-using System;
-using System.Collections.Generic;
+﻿using System;
 using System.Data;
+using System.Data.SqlClient; // Sử dụng SqlClient cho SQL Server
 using System.IO;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace HQTCSDL.model
 {
@@ -16,11 +12,12 @@ namespace HQTCSDL.model
         // Thêm sản phẩm
         public bool AddProduct(string name, MemoryStream image, string des, decimal price)
         {
-            MySqlCommand cmd = new MySqlCommand("CALL ADD_PRODUCT(@name, @image, @des, @price)", db.getConnection);
-            cmd.Parameters.Add("@name", MySqlDbType.VarChar).Value = name;
-            cmd.Parameters.Add("@image", MySqlDbType.Blob).Value = image.ToArray();
-            cmd.Parameters.Add("@des", MySqlDbType.VarChar).Value = des;
-            cmd.Parameters.Add("@price", MySqlDbType.Decimal).Value = price;
+            // Thay MySqlCommand bằng SqlCommand và thay đổi cú pháp cho SQL Server
+            SqlCommand cmd = new SqlCommand("EXEC ADD_PRODUCT @name, @image, @des, @price", db.getConnection);
+            cmd.Parameters.Add("@name", SqlDbType.VarChar).Value = name;
+            cmd.Parameters.Add("@image", SqlDbType.VarBinary).Value = image.ToArray(); // Sử dụng VarBinary cho hình ảnh
+            cmd.Parameters.Add("@des", SqlDbType.VarChar).Value = des;
+            cmd.Parameters.Add("@price", SqlDbType.Decimal).Value = price;
 
             db.openConnection();
             if (cmd.ExecuteNonQuery() == 1)
@@ -36,8 +33,8 @@ namespace HQTCSDL.model
         public DataTable getAllProducts()
         {
             DataTable dataTable = new DataTable();
-            MySqlCommand cmd = new MySqlCommand("SELECT IdProduct, NameProduct, Image, Price FROM VIEW_PRODUCT_INFORMATION", db.getConnection);
-            MySqlDataAdapter adapter = new MySqlDataAdapter(cmd);
+            SqlCommand cmd = new SqlCommand("SELECT IdProduct, NameProduct, Image, Price FROM VIEW_PRODUCT_INFORMATION", db.getConnection);
+            SqlDataAdapter adapter = new SqlDataAdapter(cmd); // Thay MySqlDataAdapter bằng SqlDataAdapter
             try
             {
                 db.openConnection();
@@ -56,10 +53,10 @@ namespace HQTCSDL.model
         public DataTable getProductById(int id)
         {
             DataTable dataTable = new DataTable();
-            MySqlCommand cmd = new MySqlCommand("SELECT IdProduct, NameProduct, Description, Price FROM VIEW_PRODUCT_INFORMATION WHERE IdProduct = @id", db.getConnection);
-            cmd.Parameters.Add("@id", MySqlDbType.Int32).Value = id;
+            SqlCommand cmd = new SqlCommand("SELECT IdProduct, NameProduct, Description, Price FROM VIEW_PRODUCT_INFORMATION WHERE IdProduct = @id", db.getConnection);
+            cmd.Parameters.Add("@id", SqlDbType.Int).Value = id; // Thay MySqlDbType.Int32 bằng SqlDbType.Int
 
-            MySqlDataAdapter adapter = new MySqlDataAdapter(cmd);
+            SqlDataAdapter adapter = new SqlDataAdapter(cmd); // Thay MySqlDataAdapter bằng SqlDataAdapter
             try
             {
                 db.openConnection();

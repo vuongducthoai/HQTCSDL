@@ -1,7 +1,7 @@
-﻿using MySql.Data.MySqlClient;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Data;
+using System.Data.SqlClient;
 
 namespace HQTCSDL.model
 {
@@ -12,16 +12,14 @@ namespace HQTCSDL.model
         public string Phone { get; set; }
         public int Loyalty { get; set; }
 
-
-
-         My_DB db = new My_DB();
+        My_DB db = new My_DB();
 
         // Lấy tất cả thông tin khách hàng
         public DataTable GetAllCustomers()
         {
             DataTable dataTable = new DataTable();
-            MySqlCommand cmd = new MySqlCommand("SELECT IdCustomer, FullName, Phone, Loyalty FROM Customer", db.getConnection);
-            MySqlDataAdapter adapter = new MySqlDataAdapter(cmd);
+            SqlCommand cmd = new SqlCommand("SELECT IdCustomer, FullName, Phone, Loyalty FROM Customer", db.getConnection);
+            SqlDataAdapter adapter = new SqlDataAdapter(cmd);
             try
             {
                 db.openConnection();
