@@ -30,6 +30,7 @@ namespace HQTCSDL
         {
             FImportGood fImportGood = new FImportGood();
             fImportGood.Show();
+        }
         private void FMain_Load(object sender, EventArgs e)
         {
             mydb.openConnection();

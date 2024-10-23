@@ -98,7 +98,10 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="BillTemp.cs" />
+    <Compile Include="CatalogTemp.cs" />
     <Compile Include="Config.cs" />
+    <Compile Include="CustomerTemp.cs" />
     <Compile Include="FMain.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -116,7 +119,7 @@
     </Compile>
     <Compile Include="FOrder.Designer.cs">
       <DependentUpon>FOrder.cs</DependentUpon>
-     </Compile>
+    </Compile>
     <Compile Include="Forms\ManagerInforUser\FInfor.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -141,6 +144,7 @@
     <Compile Include="My_DB.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="SupplyerTemp.cs" />
     <Compile Include="UserControlProduct.cs">
       <SubType>UserControl</SubType>
     </Compile>
