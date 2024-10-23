@@ -35,7 +35,7 @@ namespace HQTCSDL
             this.headerPanel = new System.Windows.Forms.Panel();
             this.label1 = new System.Windows.Forms.Label();
             this.controlPanel = new System.Windows.Forms.Panel();
-            this.button9 = new System.Windows.Forms.Button();
+            
             this.button7 = new System.Windows.Forms.Button();
             this.button8 = new System.Windows.Forms.Button();
             this.button1 = new System.Windows.Forms.Button();
@@ -96,14 +96,6 @@ namespace HQTCSDL
             // 
             // button9
             // 
-            this.button9.Location = new System.Drawing.Point(3, 41);
-            this.button9.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.button9.Name = "button9";
-            this.button9.Size = new System.Drawing.Size(178, 35);
-            this.button9.TabIndex = 9;
-            this.button9.Text = "Duyệt nhân viên";
-            this.button9.UseVisualStyleBackColor = true;
-            this.button9.Click += new System.EventHandler(this.button9_Click);
             // 
             // button7
             // 
@@ -114,7 +106,7 @@ namespace HQTCSDL
             this.button7.TabIndex = 6;
             this.button7.Text = "Ưu đãi";
             this.button7.UseVisualStyleBackColor = true;
-            this.button7.Click += new System.EventHandler(this.button7_Click);
+            
             // 
             // button8
             // 
@@ -140,7 +132,7 @@ namespace HQTCSDL
             // flowLayoutPanel1
             // 
             this.flowLayoutPanel1.Controls.Add(this.btn_infor);
-            this.flowLayoutPanel1.Controls.Add(this.button9);
+  
             this.flowLayoutPanel1.Controls.Add(this.button6);
             this.flowLayoutPanel1.Controls.Add(this.button1);
             this.flowLayoutPanel1.Controls.Add(this.button2);
@@ -216,7 +208,7 @@ namespace HQTCSDL
             this.button5.TabIndex = 4;
             this.button5.Text = "Nhập hàng";
             this.button5.UseVisualStyleBackColor = true;
-            this.button5.Click += new System.EventHandler(this.button5_Click);
+            
             // 
             // pictureBox1
             // 
