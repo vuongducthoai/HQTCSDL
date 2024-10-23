@@ -1,4 +1,5 @@
-﻿using HQTCSDL.Forms.ManagerInforUser;
+﻿using HQTCSDL.Forms.Login;
+using HQTCSDL.Forms.ManagerInforUser;
 using HQTCSDL.Forms.ManagerProduct;
 using HQTCSDL.Forms.ManagerVoucher;
 using System;
@@ -34,10 +35,6 @@ namespace HQTCSDL
         }
         private void FMain_Load(object sender, EventArgs e)
         {
-            mydb.openConnection();
-            mydb.closeConnection();
-            Config.setID(1);
-            Config.setRole(0);
         }
 
         private void btn_infor_Click(object sender, EventArgs e)
@@ -81,6 +78,40 @@ namespace HQTCSDL
                 form.BringToFront();
                 form.Show();
                 label1.Text = "Quản lí Ưu đãi";
+            }
+            catch { }
+        }
+
+        private void button9_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                DuyetNhanVien form = new DuyetNhanVien();
+                controlPanel.Controls.Clear();
+                form.TopLevel = false;
+                controlPanel.Controls.Add(form);
+                form.BringToFront();
+                form.Show();
+                label1.Text = "Duyệt Nhân Viên";
+            }
+            catch { }
+        }
+
+        private void linkLabel1_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
+        {
+            FLogin currentForm = Application.OpenForms.OfType<FLogin>().FirstOrDefault();
+            currentForm.reset();
+            currentForm.Show();
+            this.Close();
+        }
+
+        private void FMain_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            try
+            {
+                Form currentForm = Application.OpenForms.OfType<FLogin>().FirstOrDefault();
+                if (currentForm.Visible == false)
+                    Application.Exit();
             }
             catch { }
         }
