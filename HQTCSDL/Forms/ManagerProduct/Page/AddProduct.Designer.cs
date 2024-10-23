@@ -54,13 +54,7 @@
             // 
             // Price
             // 
-            this.Price.DecimalPlaces = 2;
             this.Price.Location = new System.Drawing.Point(228, 355);
-            this.Price.Maximum = new decimal(new int[] {
-            1874919423,
-            2328306,
-            0,
-            0});
             this.Price.Name = "Price";
             this.Price.Size = new System.Drawing.Size(120, 22);
             this.Price.TabIndex = 26;
