@@ -1,5 +1,6 @@
 ﻿using HQTCSDL.Forms.ManagerInforUser;
 using HQTCSDL.Forms.ManagerProduct;
+using HQTCSDL.model;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -22,10 +23,7 @@ namespace HQTCSDL
 
         private void FMain_Load(object sender, EventArgs e)
         {
-            mydb.openConnection();
-            mydb.closeConnection();
-            Config.setID(1);
-            Config.setRole(0);
+            
         }
 
         private void btn_infor_Click(object sender, EventArgs e)
@@ -54,7 +52,6 @@ namespace HQTCSDL
                 form.Show();
             }
             catch { }
-
         }
 
         private void button3_Click(object sender, EventArgs e)
