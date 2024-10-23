@@ -35,6 +35,7 @@ namespace HQTCSDL
             this.headerPanel = new System.Windows.Forms.Panel();
             this.label1 = new System.Windows.Forms.Label();
             this.controlPanel = new System.Windows.Forms.Panel();
+            this.button9 = new System.Windows.Forms.Button();
             this.button1 = new System.Windows.Forms.Button();
             this.flowLayoutPanel1 = new System.Windows.Forms.FlowLayoutPanel();
             this.btn_infor = new System.Windows.Forms.Button();
@@ -46,8 +47,10 @@ namespace HQTCSDL
             this.button7 = new System.Windows.Forms.Button();
             this.button8 = new System.Windows.Forms.Button();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
+            this.linkLabel1 = new System.Windows.Forms.LinkLabel();
             this.mainPanel.SuspendLayout();
             this.headerPanel.SuspendLayout();
+            this.controlPanel.SuspendLayout();
             this.flowLayoutPanel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.SuspendLayout();
@@ -88,11 +91,25 @@ namespace HQTCSDL
             // controlPanel
             // 
             this.controlPanel.BackColor = System.Drawing.Color.LightCyan;
+            this.controlPanel.Controls.Add(this.button9);
+            this.controlPanel.Controls.Add(this.button7);
+            this.controlPanel.Controls.Add(this.button8);
             this.controlPanel.Location = new System.Drawing.Point(28, 64);
             this.controlPanel.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.controlPanel.Name = "controlPanel";
             this.controlPanel.Size = new System.Drawing.Size(906, 530);
             this.controlPanel.TabIndex = 0;
+            // 
+            // button9
+            // 
+            this.button9.Location = new System.Drawing.Point(192, 146);
+            this.button9.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.button9.Name = "button9";
+            this.button9.Size = new System.Drawing.Size(178, 48);
+            this.button9.TabIndex = 9;
+            this.button9.Text = "Duyệt nhân viên";
+            this.button9.UseVisualStyleBackColor = true;
+            this.button9.Click += new System.EventHandler(this.button9_Click);
             // 
             // button1
             // 
@@ -114,12 +131,10 @@ namespace HQTCSDL
             this.flowLayoutPanel1.Controls.Add(this.button3);
             this.flowLayoutPanel1.Controls.Add(this.button4);
             this.flowLayoutPanel1.Controls.Add(this.button5);
-            this.flowLayoutPanel1.Controls.Add(this.button7);
-            this.flowLayoutPanel1.Controls.Add(this.button8);
             this.flowLayoutPanel1.Location = new System.Drawing.Point(21, 149);
             this.flowLayoutPanel1.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.flowLayoutPanel1.Name = "flowLayoutPanel1";
-            this.flowLayoutPanel1.Size = new System.Drawing.Size(188, 419);
+            this.flowLayoutPanel1.Size = new System.Drawing.Size(188, 379);
             this.flowLayoutPanel1.TabIndex = 4;
             // 
             // btn_infor
@@ -187,7 +202,7 @@ namespace HQTCSDL
             // 
             // button7
             // 
-            this.button7.Location = new System.Drawing.Point(3, 366);
+            this.button7.Location = new System.Drawing.Point(0, 255);
             this.button7.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.button7.Name = "button7";
             this.button7.Size = new System.Drawing.Size(178, 48);
@@ -198,7 +213,7 @@ namespace HQTCSDL
             // 
             // button8
             // 
-            this.button8.Location = new System.Drawing.Point(3, 418);
+            this.button8.Location = new System.Drawing.Point(105, 355);
             this.button8.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.button8.Name = "button8";
             this.button8.Size = new System.Drawing.Size(178, 48);
@@ -217,12 +232,25 @@ namespace HQTCSDL
             this.pictureBox1.TabIndex = 3;
             this.pictureBox1.TabStop = false;
             // 
+            // linkLabel1
+            // 
+            this.linkLabel1.AutoSize = true;
+            this.linkLabel1.Font = new System.Drawing.Font("PMingLiU-ExtB", 18F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))), System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.linkLabel1.Location = new System.Drawing.Point(35, 558);
+            this.linkLabel1.Name = "linkLabel1";
+            this.linkLabel1.Size = new System.Drawing.Size(140, 30);
+            this.linkLabel1.TabIndex = 5;
+            this.linkLabel1.TabStop = true;
+            this.linkLabel1.Text = "Đăng Xuất";
+            this.linkLabel1.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.linkLabel1_LinkClicked);
+            // 
             // FMain
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.GradientActiveCaption;
             this.ClientSize = new System.Drawing.Size(1181, 616);
+            this.Controls.Add(this.linkLabel1);
             this.Controls.Add(this.flowLayoutPanel1);
             this.Controls.Add(this.pictureBox1);
             this.Controls.Add(this.mainPanel);
@@ -230,12 +258,15 @@ namespace HQTCSDL
             this.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.Name = "FMain";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
+            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.FMain_FormClosing);
             this.mainPanel.ResumeLayout(false);
             this.headerPanel.ResumeLayout(false);
             this.headerPanel.PerformLayout();
+            this.controlPanel.ResumeLayout(false);
             this.flowLayoutPanel1.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.ResumeLayout(false);
+            this.PerformLayout();
 
         }
 
@@ -256,5 +287,7 @@ namespace HQTCSDL
         private Panel headerPanel;
         private Label label1;
         private Button btn_infor;
+        private Button button9;
+        private LinkLabel linkLabel1;
     }
 }
