@@ -24,6 +24,7 @@ namespace HQTCSDL.Forms.ManagerInforUser
 
         private void FInfor_Load(object sender, EventArgs e)
         {
+            
             DataTable dt = user.getUser(Config.getID());
             textID.Text = dt.Rows[0]["IdUser"].ToString();
             textName.Text = dt.Rows[0]["Name"].ToString();
