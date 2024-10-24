@@ -1,4 +1,6 @@
-﻿using HQTCSDL.Forms.Login;
+﻿using HQTCSDL.Forms;
+using HQTCSDL.Forms.Login;
+using HQTCSDL.Forms.ManagementStatistic;
 using HQTCSDL.Forms.ManagerInforUser;
 using HQTCSDL.Forms.ManagerProduct;
 using HQTCSDL.Forms.ManagerVoucher;
@@ -22,6 +24,18 @@ namespace HQTCSDL
             InitializeComponent();
         }
 
+        private void button2_Click(object sender, EventArgs e)
+        {
+            // Tạo đối tượng mới của form FKhachHang
+            FKhachHang fKhachHang = new FKhachHang();
+
+            // Hiển thị form FKhachHang
+            fKhachHang.ShowDialog(); // Dùng ShowDialog nếu bạn muốn hiển thị như một hộp thoại
+        }
+
+        private void button6_Click(object sender, EventArgs e)
+        {
+        }
         private void button4_Click(object sender, EventArgs e)
         {
             FOrder fOrder = new FOrder();
@@ -112,6 +126,36 @@ namespace HQTCSDL
                 Form currentForm = Application.OpenForms.OfType<FLogin>().FirstOrDefault();
                 if (currentForm.Visible == false)
                     Application.Exit();
+            }
+            catch { }
+        }
+
+        private void button3_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                FSupplier form = new FSupplier();
+                controlPanel.Controls.Clear();
+                form.TopLevel = false;
+                controlPanel.Controls.Add(form);
+                form.BringToFront();
+                form.Show();
+                label1.Text = "Quản lí nhà cung cấp";
+            }
+            catch { }
+        }
+
+        private void button8_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                StatisticChart form = new StatisticChart();
+                controlPanel.Controls.Clear();
+                form.TopLevel = false;
+                controlPanel.Controls.Add(form);
+                form.BringToFront();
+                form.Show();
+                label1.Text = "Quản lí nhà cung cấp";
             }
             catch { }
         }
