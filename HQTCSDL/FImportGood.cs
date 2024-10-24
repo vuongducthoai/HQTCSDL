@@ -262,16 +262,17 @@ namespace HQTCSDL
             cbxSupplier.Select(cbxSupplier.Text.Length, 0);
         }
 
-        private int GetProductInforId(int productId, string size, string color)
+        private int GetProductInforId(int productId, int size, string color, SqlTransaction transaction)
         {
             string query = "SELECT IdPInfor FROM Product_Infor WHERE IdProduct = @IdProduct AND Size = @Size AND Color = @Color";
-            SqlCommand cmd = new SqlCommand(query, db.getConnection);
+            SqlCommand cmd = new SqlCommand(query, db.getConnection, transaction); // Gán transaction vào command
             cmd.Parameters.AddWithValue("@IdProduct", productId);
             cmd.Parameters.AddWithValue("@Size", size);
             cmd.Parameters.AddWithValue("@Color", color);
             object result = cmd.ExecuteScalar();
-            return Convert.ToInt32(result);
+            return result != null ? Convert.ToInt32(result) : -1; // Kiểm tra kết quả null trước khi chuyển đổi
         }
+
         private void btnImport_Click(object sender, EventArgs e)
         {
             // Kiểm tra nếu có dòng nào được chọn trong DataGridView
@@ -324,42 +325,44 @@ namespace HQTCSDL
 
             db.openConnection();
 
-            // Bắt đầu transaction
             using (SqlTransaction transaction = db.getConnection.BeginTransaction())
             {
                 try
                 {
-                    // Gọi thủ tục nhập hàng
-                    using (SqlCommand cmd = new SqlCommand("ImportGoods", db.getConnection, transaction))
+                    // 1. Gọi thủ tục để tạo đơn hàng
+                    int newOrderId;
+
+                    using (SqlCommand cmd = new SqlCommand("CreatePurchaseOrder", db.getConnection, transaction))
                     {
                         cmd.CommandType = CommandType.StoredProcedure;
-
-                        // Thêm tham số vào lệnh
                         cmd.Parameters.AddWithValue("@p_IdSupplier", idSup);
                         cmd.Parameters.AddWithValue("@p_Total", total);
+                        cmd.Parameters.Add("@p_NewOrderId", SqlDbType.Int).Direction = ParameterDirection.Output;
 
-                        // Thêm chi tiết sản phẩm từ DataGridView
-                        foreach (DataGridViewRow row in dtgrvImportBill.Rows)
+                        cmd.ExecuteNonQuery();
+
+                        newOrderId = (int)cmd.Parameters["@p_NewOrderId"].Value;
+                    }
+
+                    // 2. Gọi thủ tục để thêm chi tiết đơn hàng
+                    foreach (DataGridViewRow row in dtgrvImportBill.Rows)
+                    {
+                        if (row.IsNewRow) continue;
+
+                        int productId = Convert.ToInt32(row.Cells["id"].Value);
+                        int size = Convert.ToInt32(row.Cells["size"].Value);
+                        string color = row.Cells["color"].Value.ToString();
+                        int quantity = Convert.ToInt32(row.Cells["quantity"].Value);
+
+                        int productInforId = GetProductInforId(productId, size, color, transaction);
+
+                        using (SqlCommand cmd = new SqlCommand("AddPurchaseOrderDetail", db.getConnection, transaction))
                         {
-                            if (row.IsNewRow) continue;
-
-                            int productId = Convert.ToInt32(row.Cells["id"].Value);
-                            string size = row.Cells["size"].Value.ToString();
-                            string color = row.Cells["color"].Value.ToString();
-                            int quantity = Convert.ToInt32(row.Cells["quantity"].Value);
-                            
-                            string errorMsg;
-                            // Lấy IdPInfor tương ứng với sản phẩm
-                            int productInforId = GetProductInforId(productId, size, color);
-                            // Thêm tham số cho từng sản phẩm
-                            cmd.Parameters.Clear(); // Xóa các tham số cũ
-                            cmd.Parameters.AddWithValue("@p_IdSupplier", idSup);
-                            cmd.Parameters.AddWithValue("@p_Total", total);
+                            cmd.CommandType = CommandType.StoredProcedure;
                             cmd.Parameters.AddWithValue("@p_IdPInfor", productInforId);
                             cmd.Parameters.AddWithValue("@p_Quantity", quantity);
-                            cmd.Parameters.Add("p_ErrorMsg", SqlDbType.VarChar).Direction = ParameterDirection.Output;
+                            cmd.Parameters.AddWithValue("@p_NewOrderId", newOrderId);
 
-                        // Thực hiện lệnh cho từng sản phẩm
                             cmd.ExecuteNonQuery();
                         }
                     }
@@ -371,17 +374,16 @@ namespace HQTCSDL
                 }
                 catch (Exception ex)
                 {
-                // Rollback transaction nếu có lỗi
-                transaction.Rollback();
-                MessageBox.Show("Có lỗi xảy ra: " + ex.Message);
+                    transaction.Rollback();
+                    MessageBox.Show("Có lỗi xảy ra: " + ex.Message);
                 }
                 finally
                 {
-                db.closeConnection(); // Đảm bảo kết thúc kết nối
+                    db.closeConnection(); // Đảm bảo kết thúc kết nối
                 }
             }
-        }
 
+    }
         private void btnHoanTat_Click(object sender, EventArgs e)
         {
             dtgrvManageImportGoods.DataSource = null;

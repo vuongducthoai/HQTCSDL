@@ -8,7 +8,7 @@ namespace HQTCSDL
 {
     public partial class FKhachHang : Form
     {
-        MY_DB db = new MY_DB(); // Tạo đối tượng MY_DB
+        My_DB db = new My_DB(); // Tạo đối tượng MY_DB
 
         public FKhachHang()
         {

@@ -311,7 +311,7 @@ namespace HQTCSDL
         {
             int billId = -1;
             db.openConnection();
-            string query = "INSERT INTO Bill (IdCustomer, IdVoucher, IdUser) VALUES (@IdCustomer, @IdVoucher, @IdUser); SELECT LAST_INSERT_ID();";
+            string query = "INSERT INTO Bill (IdCustomer, IdVoucher, IdUser) VALUES (@IdCustomer, @IdVoucher, @IdUser); SELECT SCOPE_IDENTITY() AS BillId";
 
             using (SqlCommand cmd = new SqlCommand(query, db.getConnection))
             {
@@ -333,15 +333,32 @@ namespace HQTCSDL
             return billId; // Trả về Id của hóa đơn mới tạo
         }
 
-        private int GetProductInforId(int productId, string size, string color)
+        private void UpdateTotal(int idBill, decimal total)
+        {
+            string query = "UPDATE Bill SET TotalInvoice = @Total WHERE IdBill = @IdBill";
+            db.openConnection();
+            using (SqlCommand cmd = new SqlCommand(query, db.getConnection))
+            {
+                // Thêm tham số cho câu truy vấn
+                cmd.Parameters.AddWithValue("@Total", total);
+                cmd.Parameters.AddWithValue("@IdBill", idBill);
+
+                // Thực thi lệnh cập nhật
+                cmd.ExecuteNonQuery();
+            }
+
+            db.closeConnection();
+        }
+
+        private int GetProductInforId(int productId, string size, string color, SqlTransaction transaction)
         {
             string query = "SELECT IdPInfor FROM Product_Infor WHERE IdProduct = @IdProduct AND Size = @Size AND Color = @Color";
-            SqlCommand cmd = new SqlCommand(query, db.getConnection);
+            SqlCommand cmd = new SqlCommand(query, db.getConnection, transaction); // Gán transaction vào command
             cmd.Parameters.AddWithValue("@IdProduct", productId);
             cmd.Parameters.AddWithValue("@Size", size);
             cmd.Parameters.AddWithValue("@Color", color);
             object result = cmd.ExecuteScalar();
-            return Convert.ToInt32(result);
+            return result != null ? Convert.ToInt32(result) : -1; // Kiểm tra kết quả null trước khi chuyển đổi
         }
 
 
@@ -421,10 +438,12 @@ namespace HQTCSDL
             {
                 billDetails.AppendLine($"Giảm giá: {discount}%");
                 finalBill = totalBill * (1 - (discount / 100));
+                UpdateTotal(billId, finalBill);
             }
             else
             {
                 finalBill = totalBill;
+
             }
 
             billDetails.AppendLine($"Tổng tiền trước giảm giá: {totalBill}");
@@ -474,35 +493,26 @@ namespace HQTCSDL
                         string size = row.Cells["size"].Value.ToString();
                         string color = row.Cells["color"].Value.ToString();
                         int quantity = Convert.ToInt32(row.Cells["quantity"].Value);
-                        int productInforId = GetProductInforId(productId, size, color);
-                        string errorMsg;
+                        int productInforId = GetProductInforId(productId, size, color, transaction);
+
                         using (SqlCommand cmd = new SqlCommand("AddBillAndUpdateStock", db.getConnection, transaction))
                         {
                             cmd.CommandType = CommandType.StoredProcedure;
                             cmd.Parameters.AddWithValue("p_IdBill", billId);
                             cmd.Parameters.AddWithValue("p_IdPInfor", productInforId);
                             cmd.Parameters.AddWithValue("p_Quantity", quantity);
-                            cmd.Parameters.Add("p_ErrorMsg", SqlDbType.VarChar).Direction = ParameterDirection.Output;
 
-                            cmd.ExecuteNonQuery(); 
-
-                            errorMsg = cmd.Parameters["p_ErrorMsg"].Value.ToString();
-                            if (errorMsg != "Success")
-                            {
-                                MessageBox.Show("Có lỗi xảy ra: " + errorMsg);
-                                transaction.Rollback(); // Rollback transaction nếu có lỗi
-                                return; 
-                            }
+                            cmd.ExecuteNonQuery(); // Nếu có lỗi xảy ra từ SQL, sẽ ném ra exception
                         }
                     }
                     transaction.Commit();
                     MessageBox.Show("Thanh toán thành công!");
                     dtgrvOrderBill.Rows.Clear();
                 }
-                catch (Exception ex)
+                catch (SqlException ex)
                 {
                     transaction.Rollback();
-                    MessageBox.Show("Có lỗi xảy ra: " + ex.Message);
+                    MessageBox.Show("Có lỗi xảy ra: " + ex.Message); // Hiển thị lỗi từ SQL
                 }
                 finally
                 {
@@ -524,7 +534,7 @@ namespace HQTCSDL
             DateTime fromDate = dtpkFrom.Value.Date;  
             DateTime toDate = dtpkTo.Value.Date.AddDays(1).AddTicks(-1);  
 
-            string query = $"SELECT IdBill, CustomerName, UserName, BillDate, TotalBill, Voucher " +
+            string query = $"SELECT Distinct IdBill, CustomerName, UserName, BillDate, TotalInvoice, Voucher " +
                            $"FROM View_Bills " +
                            $"WHERE BillDate BETWEEN '{fromDate:yyyy-MM-dd HH:mm:ss}' AND '{toDate:yyyy-MM-dd HH:mm:ss}'";
 

@@ -246,6 +246,9 @@
     <Compile Include="UserControlProduct.Designer.cs">
       <DependentUpon>UserControlProduct.cs</DependentUpon>
     </Compile>
+    <EmbeddedResource Include="FKhachHang.resx">
+      <DependentUpon>FKhachHang.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="FMain.resx">
       <DependentUpon>FMain.cs</DependentUpon>
     </EmbeddedResource>
