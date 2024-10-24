@@ -46,12 +46,6 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="FDanhMuc.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="FDanhMuc.Designer.cs">
-      <DependentUpon>FDanhMuc.cs</DependentUpon>
-    </Compile>
     <Compile Include="FKhachHang.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -68,9 +62,6 @@
     <Compile Include="MY_DB.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <EmbeddedResource Include="FDanhMuc.resx">
-      <DependentUpon>FDanhMuc.cs</DependentUpon>
-    </EmbeddedResource>
     <EmbeddedResource Include="FKhachHang.resx">
       <DependentUpon>FKhachHang.cs</DependentUpon>
     </EmbeddedResource>
