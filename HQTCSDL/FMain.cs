@@ -16,5 +16,22 @@ namespace HQTCSDL
         {
             InitializeComponent();
         }
+
+        private void button2_Click(object sender, EventArgs e)
+        {
+            // Tạo đối tượng mới của form FKhachHang
+            FKhachHang fKhachHang = new FKhachHang();
+
+            // Hiển thị form FKhachHang
+            fKhachHang.ShowDialog(); // Dùng ShowDialog nếu bạn muốn hiển thị như một hộp thoại
+        }
+
+        private void button6_Click(object sender, EventArgs e)
+        {
+            FDanhMuc fDanhMuc = new FDanhMuc();
+
+            // Hiển thị form FKhachHang
+            fDanhMuc.ShowDialog(); // Dùng ShowDialog nếu bạn muốn hiển thị như một hộp thoại
+        }
     }
 }
