@@ -46,6 +46,8 @@ namespace HQTCSDL
             this.button4 = new System.Windows.Forms.Button();
             this.button3 = new System.Windows.Forms.Button();
             this.button5 = new System.Windows.Forms.Button();
+            this.button7 = new System.Windows.Forms.Button();
+            this.button8 = new System.Windows.Forms.Button();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.linkLabel1 = new System.Windows.Forms.LinkLabel();
             this.mainPanel.SuspendLayout();
@@ -178,6 +180,7 @@ namespace HQTCSDL
             this.button6.TabIndex = 5;
             this.button6.Text = "Danh mục";
             this.button6.UseVisualStyleBackColor = true;
+            this.button6.Click += new System.EventHandler(this.button6_Click);
             // 
             // button2
             // 
@@ -188,6 +191,7 @@ namespace HQTCSDL
             this.button2.TabIndex = 1;
             this.button2.Text = "Khách hàng";
             this.button2.UseVisualStyleBackColor = true;
+            this.button2.Click += new System.EventHandler(this.button2_Click);
             // 
             // button4
             // 
@@ -234,7 +238,7 @@ namespace HQTCSDL
             // 
             // button8
             // 
-            this.button8.Location = new System.Drawing.Point(3, 450);
+            this.button8.Location = new System.Drawing.Point(3, 555);
             this.button8.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.button8.Name = "button8";
             this.button8.Size = new System.Drawing.Size(200, 52);
@@ -264,10 +268,9 @@ namespace HQTCSDL
             this.linkLabel1.TabStop = true;
             this.linkLabel1.Text = "Đăng Xuất";
             this.linkLabel1.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.linkLabel1_LinkClicked);
-            // 
             // FMain
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.GradientActiveCaption;
             this.ClientSize = new System.Drawing.Size(1181, 616);
