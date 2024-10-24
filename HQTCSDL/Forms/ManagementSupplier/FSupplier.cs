@@ -43,7 +43,7 @@ namespace HQTCSDL.Forms
 
         private void buttonInsert_Click(object sender, EventArgs e)
         {
-            string supplierName = textBoxPhone.Text;
+            string supplierName = textBoxName.Text;
             string phone = textBoxPhone.Text;
             string address = textBoxAddress.Text;
             if(supplier.insertSupplier(supplierName, phone, address))
