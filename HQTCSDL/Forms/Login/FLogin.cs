@@ -45,7 +45,7 @@ namespace HQTCSDL.Forms.Login
             {
                 SqlCommand cmd = new SqlCommand("select IdUser,Role " +
                     "from VIEW_INFOR_USERS" +
-                    " WHERE UName LIKE @UN AND Password LIKE @PW",my_DB.getConnection);
+                    " WHERE UName LIKE @UN AND Password LIKE @PW",my_DB.getConnectionAdmin);
                 cmd.Parameters.Add("@UN", SqlDbType.VarChar).Value = uN;
                 cmd.Parameters.Add("@PW", SqlDbType.VarChar).Value = pW;
                 SqlDataAdapter ap = new SqlDataAdapter(cmd);
@@ -55,6 +55,8 @@ namespace HQTCSDL.Forms.Login
                 {
                     Config.setID((int)table.Rows[0]["IdUser"]);
                     Config.setRole(table.Rows[0]["Role"].ToString().ToUpper()=="A"?1:0);
+                    Config.setPassword(pW);
+                    Config.setUname(uN);
                 }
                 catch { }
                 FMain form = new FMain();

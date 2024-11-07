@@ -11,6 +11,8 @@ namespace HQTCSDL
     {
         private static int idUser = 0;
         private static int roleAccount = 0; // 0 : Admin; 1:Staff
+        private static string uname = "";
+        private static string password = "";
         public static void setID(int id)
         {
             idUser = id;
@@ -23,6 +25,24 @@ namespace HQTCSDL
         }
         public static void setRole(int role) { 
             roleAccount = role;
+        }
+        public static string getPassword()
+        {
+            return password;
+        }
+        public static void setPassword(string passwordD)
+        {
+            password = passwordD;
+        }
+
+        public static string getUsername()
+        {
+            return uname;
+        }
+
+        public static void setUname(String uname1)
+        {
+            uname = uname1;
         }
 
     }

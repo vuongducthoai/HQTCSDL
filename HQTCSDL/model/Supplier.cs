@@ -102,27 +102,19 @@ namespace HQTCSDL.model
             cmd.Parameters.Add("@nameSupplier", SqlDbType.NVarChar).Value = name;
             cmd.Parameters.Add("@phone", SqlDbType.NVarChar).Value = phone;
             cmd.Parameters.Add("@address", SqlDbType.NVarChar).Value = address;
-            try
+           
+            db.openConnection();
+            int result = cmd.ExecuteNonQuery();
+            if (result > 0)
             {
-                db.openConnection();
-                int result = cmd.ExecuteNonQuery();
-                if (result > 0)
-                {
-                    db.closeConnection();
-                    return true;
-                }
-                else
-                {
-                    db.closeConnection();
-                    return false;
-                }
+                db.closeConnection();
+                return true;
             }
-            catch (SqlException ex)
+            else
             {
-                MessageBox.Show("Loi khi cap nhat nha cung cap: " + ex.Message);
+                db.closeConnection();
+                return false;
             }
-            db.closeConnection();
-            return false;
         }
 
         public bool deleteSupplier(int supplierId)

@@ -63,14 +63,20 @@ namespace HQTCSDL.Forms
             string supplierName = textBoxName.Text;
             string phone = textBoxPhone.Text;
             string address = textBoxAddress.Text;
-            if (supplier.updateSupplier(supplierId,supplierName, phone, address))
+            try
             {
-                MessageBox.Show("Supplier đã được cập nhật thành công!", "Update Supplier", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                LoadTableAllProduct();
+                if (supplier.updateSupplier(supplierId, supplierName, phone, address))
+                {
+                    MessageBox.Show("Supplier đã được cập nhật thành công!", "Update Supplier", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    LoadTableAllProduct();
+                }
+                else
+                {
+                    MessageBox.Show("Supplier cập nhất thất bại!", "Update Supplier", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
             }
-            else
-            {
-                MessageBox.Show("Supplier cập nhất thất bại!", "Update Supplier", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            catch (Exception ex) {
+                MessageBox.Show(ex.Message);
             }
         }
 
