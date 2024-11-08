@@ -24,16 +24,53 @@ namespace HQTCSDL
             InitializeComponent();
         }
 
+        private void button2_Click(object sender, EventArgs e)
+        {
+            // Tạo đối tượng mới của form FKhachHang
+            try
+            {
+                FKhachHang form = new FKhachHang();
+                controlPanel.Controls.Clear();
+                form.TopLevel = false;
+                controlPanel.Controls.Add(form);
+                form.BringToFront();
+                form.Show();
+                label1.Text = "Quản Lí Khách Hàng";
+            }
+            catch { } // Dùng ShowDialog nếu bạn muốn hiển thị như một hộp thoại
+        }
+
+        private void button6_Click(object sender, EventArgs e)
+        {
+        }
         private void button4_Click(object sender, EventArgs e)
         {
-            FOrder fOrder = new FOrder();
-            fOrder.Show();
+            try
+            {
+                FOrder form = new FOrder();
+                controlPanel.Controls.Clear();
+                form.TopLevel = false;
+                controlPanel.Controls.Add(form);
+                form.BringToFront();
+                form.Show();
+                label1.Text = "Quản Lí Đơn Hàng";
+            }
+            catch { }
         }
 
         private void button5_Click(object sender, EventArgs e)
         {
-            FImportGood fImportGood = new FImportGood();
-            fImportGood.Show();
+            try
+            {
+                FImportGood form = new FImportGood();
+                controlPanel.Controls.Clear();
+                form.TopLevel = false;
+                controlPanel.Controls.Add(form);
+                form.BringToFront();
+                form.Show();
+                label1.Text = "Quản Lí Nhập Hàng";
+            }
+            catch { }
         }
         private void FMain_Load(object sender, EventArgs e)
         {
@@ -146,6 +183,31 @@ namespace HQTCSDL
                 label1.Text = "Quản lí nhà cung cấp";
             }
             catch { }
+        }
+
+        private void headerPanel_Paint(object sender, PaintEventArgs e)
+        {
+
+        }
+
+        private void mainPanel_Paint(object sender, PaintEventArgs e)
+        {
+
+        }
+
+        private void label1_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void flowLayoutPanel1_Paint(object sender, PaintEventArgs e)
+        {
+
+        }
+
+        private void pictureBox1_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }
