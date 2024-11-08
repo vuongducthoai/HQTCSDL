@@ -317,6 +317,7 @@ namespace HQTCSDL
             {
                 cmd.Parameters.AddWithValue("@IdCustomer", customerId);
                 cmd.Parameters.AddWithValue("@IdUser", Config.getID());
+
                 // Sử dụng DBNull.Value nếu không có voucher
                 if (voucherId != -1)
                     cmd.Parameters.AddWithValue("@IdVoucher", voucherId);
@@ -444,6 +445,7 @@ namespace HQTCSDL
             {
                 finalBill = totalBill;
                 UpdateTotal(billId, finalBill);
+
             }
 
             billDetails.AppendLine($"Tổng tiền trước giảm giá: {totalBill}");
