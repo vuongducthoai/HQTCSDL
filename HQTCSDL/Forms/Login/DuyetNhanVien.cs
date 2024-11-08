@@ -66,7 +66,7 @@ namespace HQTCSDL.Forms.Login
                     if (OK == DialogResult.Yes)
                     {
                         if (account.ChangeActive(id))
-                        {
+                        {                   
                             MessageBox.Show("Cập nhập thành công", "Thành công", MessageBoxButtons.OK, MessageBoxIcon.Information);
                             Load_data();
                         }

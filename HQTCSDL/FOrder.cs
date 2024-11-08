@@ -316,7 +316,8 @@ namespace HQTCSDL
             using (SqlCommand cmd = new SqlCommand(query, db.getConnection))
             {
                 cmd.Parameters.AddWithValue("@IdCustomer", customerId);
-                cmd.Parameters.AddWithValue("@IdUser", 1);
+                cmd.Parameters.AddWithValue("@IdUser", Config.getID());
+
                 // Sử dụng DBNull.Value nếu không có voucher
                 if (voucherId != -1)
                     cmd.Parameters.AddWithValue("@IdVoucher", voucherId);
@@ -443,6 +444,7 @@ namespace HQTCSDL
             else
             {
                 finalBill = totalBill;
+                UpdateTotal(billId, finalBill);
 
             }
 

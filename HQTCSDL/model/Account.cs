@@ -16,12 +16,12 @@ namespace HQTCSDL.model
         public bool checkAccount(string uName, string uPassword)
         {
             SqlCommand command = new SqlCommand("SELECT dbo.CHECK_PASSWORD(@uN, @pW)" +
-                " AS IsPasswordCorrect",db.getConnection);
+                " AS IsPasswordCorrect",db.getConnectionAdmin);
             command.Parameters.Add("@uN", SqlDbType.VarChar).Value = uName;
             command.Parameters.Add("@pW", SqlDbType.VarChar).Value = uPassword;
-            db.getConnection.Open();
+            db.getConnectionAdmin.Open();
             object result = command.ExecuteScalar();
-            db.getConnection.Close();
+            db.getConnectionAdmin.Close();
             if (result != null)
             {
                 return Convert.ToBoolean(result); 
@@ -35,7 +35,7 @@ namespace HQTCSDL.model
             string Name,MemoryStream pic,int year,string address,string Role)
         {
             SqlCommand cmd = new SqlCommand("EXEC CREATE_ACCOUNT" +
-                " @UNAME,@PW,@NAME,@AVATAR,@YEAR_OF_BIRTH,@ADDRESS,@ROLE", db.getConnection);
+                " @UNAME,@PW,@NAME,@AVATAR,@YEAR_OF_BIRTH,@ADDRESS,@ROLE", db.getConnectionAdmin);
             cmd.Parameters.Add("@UNAME", SqlDbType.VarChar).Value = uName;
             cmd.Parameters.Add("@PW", SqlDbType.VarChar).Value = uPassword;
             cmd.Parameters.Add("@NAME", SqlDbType.NVarChar).Value = Name;
@@ -43,18 +43,18 @@ namespace HQTCSDL.model
             cmd.Parameters.Add("@YEAR_OF_BIRTH", SqlDbType.Int).Value = year;
             cmd.Parameters.Add("@ADDRESS", SqlDbType.NVarChar).Value = address;
             cmd.Parameters.Add("@ROLE", SqlDbType.VarChar).Value = Role;
-            db.openConnection();
+            db.openConnectionAdmin();
             if (cmd.ExecuteNonQuery()> 0)
             {
-                db.closeConnection();
+                db.closeConnectionAdmin();
                 return true;
             }
-            db.closeConnection();
+            db.closeConnectionAdmin();
             return false;
         }
         public bool ChangeActive(int idAc)
         {
-            
+            db.closeConnectionAdmin();
             SqlCommand cmd = new SqlCommand("UPDATE Account " +
                 "SET Active = CASE WHEN Active = 1 " +
                 "THEN 0 ELSE 1 END WHERE IdAccount = @ID;", db.getConnection);
